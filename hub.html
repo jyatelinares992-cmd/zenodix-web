@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenodix Client Hub</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Chart.js for Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box">
+                <span class="material-symbols-outlined logo-icon">blur_on</span>
+                <span class="logo-text">ZENODIX HUB</span>
+            </div>
+            <button class="mobile-close-btn" id="mobileCloseBtn">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-view="dashboard">
+                <span class="material-symbols-outlined nav-icon">dashboard</span>
+                <span class="nav-label">Dashboard (Inicio)</span>
+            </button>
+            <button class="nav-item" data-view="omnichannel">
+                <span class="material-symbols-outlined nav-icon">forum</span>
+                <span class="nav-label">Bandeja Omnicanal</span>
+            </button>
+            <button class="nav-item" data-view="social">
+                <span class="material-symbols-outlined nav-icon">magic_button</span>
+                <span class="nav-label">Generador Social IA</span>
+            </button>
+            <button class="nav-item" data-view="logistics">
+                <span class="material-symbols-outlined nav-icon">local_shipping</span>
+                <span class="nav-label">Logística Avanzada</span>
+            </button>
+            
+            <div class="nav-divider"></div>
+
+            <button class="nav-item" data-view="billing">
+                <span class="material-symbols-outlined nav-icon">receipt_long</span>
+                <span class="nav-label">Facturación</span>
+            </button>
+            <button class="nav-item" data-view="settings">
+                <span class="material-symbols-outlined nav-icon">settings</span>
+                <span class="nav-label">Configuración</span>
+            </button>
+            
+            <div class="nav-divider"></div>
+            
+            <button class="nav-item" id="logoutBtn" style="color: #ef4444;">
+                <span class="material-symbols-outlined nav-icon" style="color: #ef4444;">logout</span>
+                <span class="nav-label">Cerrar Sesión</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-btn" id="mobileMenuBtn">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="greeting">
+                    <h2 id="viewTitle">Dashboard</h2>
+                    <p>Bienvenido de vuelta, Equipo B2B</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="date-selector">
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <select>
+                        <option>Últimos 30 días</option>
+                        <option>Este Mes</option>
+                        <option>Año Actual</option>
+                    </select>
+                </div>
+                <button class="icon-btn action-btn">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-profile">
+                    <div class="avatar">AD</div>
+                    <div class="user-info">
+                        <span class="user-name">Admin</span>
+                        <span class="user-role">Enterprise</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- VIEWS WRAPPER -->
+        <div class="views-wrapper">
+            
+            <!-- VISTA 1: DASHBOARD -->
+            <section id="view-dashboard" class="view-section active">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon-box" style="background: rgba(18, 81, 145, 0.1); color: #125191;">
+                            <span class="material-symbols-outlined">account_balance_wallet</span>
+                        </div>
+                        <div class="metric-data">
+                            <p class="metric-label">Inversión Total</p>
+                            <h3 class="metric-value">$8,450 USD</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon-box" style="background: rgba(0, 169, 79, 0.1); color: #00a94f;">
+                            <span class="material-symbols-outlined">trending_up</span>
+                        </div>
+                        <div class="metric-data">
+                            <p class="metric-label">ROAS Promedio</p>
+                            <h3 class="metric-value" style="color: #00a94f;">3.4x</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon-box" style="background: rgba(18, 81, 145, 0.1); color: #125191;">
+                            <span class="material-symbols-outlined">group_add</span>
+                        </div>
+                        <div class="metric-data">
+                            <p class="metric-label">Leads Generados</p>
+                            <h3 class="metric-value">1,245</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon-box" style="background: rgba(18, 81, 145, 0.1); color: #125191;">
+                            <span class="material-symbols-outlined">inventory_2</span>
+                        </div>
+                        <div class="metric-data">
+                            <p class="metric-label">Envíos Logísticos Activos</p>
+                            <h3 class="metric-value">34</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container card">
+                    <div class="card-header">
+                        <h3 class="card-title">Ventas vs Inversión</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="salesChart" height="80"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA 2: OMNICHANNEL -->
+            <section id="view-omnichannel" class="view-section">
+                <div class="omni-container">
+                    <span class="material-symbols-outlined placeholder-icon">forum</span>
+                    <h3 class="placeholder-text">[Área reservada para integración de Bandeja Unificada]</h3>
+                    <p class="placeholder-subtext">Aquí se concentrarán todos los mensajes de WhatsApp, IG y FB Messenger para ser contestados por la IA o agentes humanos.</p>
+                </div>
+            </section>
+
+            <!-- VISTA 3: SOCIAL AI GENERATOR -->
+            <section id="view-social" class="view-section">
+                <div class="split-layout">
+                    <!-- Left: Input -->
+                    <div class="split-col input-col card">
+                        <div class="card-header">
+                            <h3 class="card-title">Configuración de Campaña</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="drag-drop-zone" id="dragDropZone">
+                                <span class="material-symbols-outlined dz-icon">cloud_upload</span>
+                                <p class="dz-text">Arrastra imágenes del producto aquí o haz clic para subir</p>
+                                <input type="file" id="campaignFile" hidden accept="image/*">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="campaignContext">Contexto / Objetivo de la Publicación</label>
+                                <textarea id="campaignContext" rows="4" placeholder="Ej: Lanzamiento de nueva línea corporativa. Queremos destacar eficiencia y seguridad..."></textarea>
+                            </div>
+
+                            <button class="btn btn-primary btn-full" onclick="generateCampaign()">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                                ✨ Generar Campaña
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Output -->
+                    <div class="split-col output-col card">
+                        <div class="card-header">
+                            <h3 class="card-title">Preview Multiplataforma</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="tabs">
+                                <div class="tab active" data-tab="meta">Meta Ads</div>
+                                <div class="tab" data-tab="tiktok">TikTok</div>
+                                <div class="tab" data-tab="google">Google Ads</div>
+                            </div>
+                            
+                            <div class="preview-box">
+                                <div class="mockup-img">
+                                    <span class="material-symbols-outlined">image</span>
+                                    Visual Generado
+                                </div>
+                                <div class="mockup-text">
+                                    <p><strong>Titular Generado IA:</strong> Revoluciona tu operación logística hoy.</p>
+                                    <p>Descubre el sistema operativo de transporte que aumentará tu ROAS en un 300%. Automatización, trazabilidad e inteligencia en una sola plataforma. 🚀</p>
+                                    <p>#Logistics #B2B #ZenodixTech</p>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary btn-full mt-auto" onclick="publishCampaign()">
+                                <span class="material-symbols-outlined">send</span>
+                                Publicar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA 4: LOGISTICS -->
+            <section id="view-logistics" class="view-section">
+                <!-- Acciones Top -->
+                <div class="logistics-actions">
+                    <button class="btn btn-action" onclick="logisticsWebhook('vehiculo_carga')">
+                        <div class="btn-icon"><span class="material-symbols-outlined">local_shipping</span></div>
+                        <div class="btn-text">
+                            <strong>Solicitar Vehículo Carga</strong>
+                            <span>Furgones, planchones, patinetas</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-action" onclick="logisticsWebhook('auxiliar_mensajero')">
+                        <div class="btn-icon"><span class="material-symbols-outlined">sports_motorsports</span></div>
+                        <div class="btn-text">
+                            <strong>Solicitar Auxiliar/Mensajero</strong>
+                            <span>Diligencias y paquetería express</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-action secondary" onclick="window.open('#tms', '_blank')">
+                        <div class="btn-icon"><span class="material-symbols-outlined">explore</span></div>
+                        <div class="btn-text">
+                            <strong>Ir al TMS Completo</strong>
+                            <span>Gestión avanzada de fletes</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- DataGrid -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Últimos Envíos Operativos</h3>
+                        <div class="table-actions">
+                            <button class="icon-btn"><span class="material-symbols-outlined">filter_list</span></button>
+                            <button class="icon-btn"><span class="material-symbols-outlined">download</span></button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="data-grid">
+                                <thead>
+                                    <tr>
+                                        <th>ID Servicio</th>
+                                        <th>Tipo de Carga</th>
+                                        <th>Fecha Estimada</th>
+                                        <th>Estado</th>
+                                        <th>Costo (COP)</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#L-9042</td>
+                                        <td>Paquetería Express</td>
+                                        <td>24 Mar 2026</td>
+                                        <td><span class="badge success">Entregado</span></td>
+                                        <td>$45,000</td>
+                                        <td><button class="icon-btn-small" title="Ver Detalles"><span class="material-symbols-outlined">visibility</span></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#L-9045</td>
+                                        <td>Furgón Sencillo (Masiva)</td>
+                                        <td>25 Mar 2026</td>
+                                        <td><span class="badge primary">En Ruta</span></td>
+                                        <td>$850,000</td>
+                                        <td><button class="icon-btn-small" title="Seguimiento GPS"><span class="material-symbols-outlined">location_on</span></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#L-9048</td>
+                                        <td>Mensajero Motorizado</td>
+                                        <td>25 Mar 2026</td>
+                                        <td><span class="badge warning">Pendiente Asignación</span></td>
+                                        <td>$15,000</td>
+                                        <td><button class="icon-btn-small" title="Editar"><span class="material-symbols-outlined">edit</span></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#L-9051</td>
+                                        <td>Transporte Ejecutivo</td>
+                                        <td>27 Mar 2026</td>
+                                        <td><span class="badge info">Programado</span></td>
+                                        <td>$120,000</td>
+                                        <td><button class="icon-btn-small" title="Ver Detalles"><span class="material-symbols-outlined">visibility</span></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="view-billing" class="view-section">
+                <!-- Placeholder for future tabs -->
+                <div class="omni-container"><p>Módulo de Facturación en Construcción</p></div>
+            </section>
+            <section id="view-settings" class="view-section">
+                <div class="omni-container"><p>Módulo de Configuración en Construcción</p></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Supabase SDK v2 (Oficial) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- App Logic -->
+    <script src="hub.js"></script>
+</body>
+</html>
