@@ -1,0 +1,107 @@
+{
+  "name": "Zenodix AI Lead Chat",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zenodix-ai-chat",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "id": "e21ab1-webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        380,
+        240
+      ],
+      "webhookId": "zenodix-ai-chat-id"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "Eres el 'Arquitecto IA' de Zenodix. Eres un experto en desarrollo de aplicaciones web y logística B2B. \nREGLA DE ORO: En tu primer interacción, si el usuario no ha dado su nombre y número celular (o correo), PIDESELOS ESTRICTAMENTE diciéndole que los necesitas para asignar su cotización SRS a un ingeniero humano y avanzar. \nUna vez que te dé su contacto, agradécele y empieza a hacer preguntas clave para construir el SRS (Documento de Requerimientos Inicial). \nCuando finalices o el usuario quiera hablar con alguien, dale la URL final: https://wa.me/573214741783?text=Hola%20quiero%20crear%20mi%20app \nResponde siempre de manera concisa y profesional."
+        }
+      },
+      "id": "AI-Agent-1",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        680,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o"
+      },
+      "id": "OpenAI-Model",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        680,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "sessionId": "={{ $json.body.sessionId }}"
+      },
+      "id": "Memory",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        860,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f04c6439-5561-4191-bbd4-c48c5417ab46"
+}

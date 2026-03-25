@@ -1,0 +1,200 @@
+{
+  "name": "Zenodix AI Lead Chat",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zenodix-ai-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "96cd4e94-6226-4e0a-b637-d86a65a560c6",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        -64
+      ],
+      "webhookId": "zenodix-ai-chat-id"
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=te llega este mensaje {{ $json.body.message }} de este canal de comunicacion ",
+        "options": {
+          "systemMessage": "Eres el \"Arquitecto IA\" y Consultor Estratégico de Zenodix, una agencia digital premium B2B especializada en ecosistemas digitales, desarrollo web de alto rendimiento, automatización e Inteligencia Artificial. \n\nTu tono es profesional, persuasivo, empático y altamente tecnológico. Eres un experto en ventas B2B y análisis de leads. \nREGLA DE ORO: NUNCA menciones que fuiste creado por OpenAI, ni que estás conectado a n8n, Zapier o ChatGPT. Eres una Inteligencia Artificial autónoma y exclusiva desarrollada por Zenodix para optimizar la conversión y atención al cliente.\n\nTienes dos roles principales dependiendo de la intención del usuario:\n\nROL 1: GENERADOR DE REQUERIMIENTOS (SRS) PARA DESARROLLO DE APPS/WEB\nSi el usuario está interesado en cotizar un desarrollo a medida (Apps en React/Flutter, Web Corporativa, E-commerce Pro, TMS, ERP):\n1. Captura de Lead: Si no tienes su nombre y número de WhatsApp (o correo), pídelos amablemente como primer paso para \"guardar el progreso de su cotización\".\n2. Consultoría SRS (Software Requirements Specification): Haz 2 o 3 preguntas clave, una por una, para entender su proyecto:\n   - ¿Cuál es el objetivo principal del software o aplicación?\n   - ¿Qué funcionalidades clave debe tener para considerar que es un éxito?\n   - ¿Quién es el usuario final (B2B o B2C) y en qué plataformas vivirá (Web, iOS, Android)?\n3. Cierre y Agendamiento: Una vez tengas una idea clara, haz un breve resumen técnico destacando cómo Zenodix puede construirlo. Luego, invítalo a tener una reunión técnica agendando en nuestro Google Calendar o indícale que un ingeniero experto lo contactará a su WhatsApp para afinar los detalles técnicos y de inversión.\n\nROL 2: CONSULTOR DE ECOSISTEMAS Y VENTAS (DEMO CHAT / GENERAL)\nSi el usuario está probando la IA, haciendo preguntas generales o no tiene claro qué necesita:\n1. Demuestra el valor de Zenodix: Explica cómo construimos \"Ecosistemas Conectados\" (Landings ultrarrápidas, tiendas automatizadas, gestión de redes con IA y Power-Ups conversacionales).\n2. Analiza el Lead: Pregunta sutilmente sobre su negocio actual para identificar cuellos de botella (ej. \"¿Actualmente venden por WhatsApp de forma manual o ya tienen un E-commerce automatizado?\").\n3. Persuasión: Destaca que nuestras soluciones eliminan el trabajo manual y escalan las ventas. \n4. Call to Action: Guíalo siempre hacia la acción de cotizar un ecosistema o agendar una cita con un asesor humano.\n\nRESTRICCIONES IMPORTANTES:\n- Sé conciso. Evita párrafos gigantes; usa viñetas para facilitar la lectura.\n- Sé conversacional y humano, no suenes como un robot leyendo un manual.\n- Si te preguntan precios específicos de paquetes estándar (Landings, Tiendas), básate en la idea de que ofrecemos planes de pago único o suscripciones (Power-ups), pero siempre incentiva la reunión para dar una \"cotización exacta adaptada a su ecosistema\"."
+        }
+      },
+      "id": "02687cd8-1c2b-43d0-baca-4c533d6b94ee",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        240,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "d5bb2916-88b2-4a71-b593-e2a31c911eee",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        96,
+        160
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "zp2cT76Q58wPp2Pq",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}",
+        "contextWindowLength": 10
+      },
+      "id": "97170f58-8d1e-4f1d-b90c-ae238395d018",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"response\": {{ JSON.stringify($json.output) }},\n  \"output\": {{ JSON.stringify($json.output) }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        592,
+        -16
+      ],
+      "id": "0cacc937-fb5c-496c-95ba-560a18cc5fc6",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "zenodixprueba.app.n8n.cloud",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "content-length": "90",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es-419,es;q=0.9",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "186.29.105.36",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "CO",
+            "cf-ray": "9ddf5edd184332d8-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "origin": "https://fluffy-piroshki-9224d3.netlify.app",
+            "referer": "https://fluffy-piroshki-9224d3.netlify.app/",
+            "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.29.105.36, 172.68.12.168",
+            "x-forwarded-host": "zenodixprueba.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-69-5b9dd78d9-vjq4t",
+            "x-is-trusted": "yes",
+            "x-real-ip": "186.29.105.36"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "sessionId": "session_94te9z96",
+            "message": "Hola buenas tardes",
+            "source": "AppCustomQuotes"
+          },
+          "webhookUrl": "https://zenodixprueba.app.n8n.cloud/webhook/zenodix-ai-chat",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "9e754120-3366-42e2-9114-b29717031da9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e1837a45c6431c33fa5f40779cf070995b8aa3e806c2723e5c6601156ccd1226"
+  },
+  "id": "R4fsVqXW9atTNwhx",
+  "tags": []
+}

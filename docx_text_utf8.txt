@@ -1,0 +1,49 @@
+﻿SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
+Project Name: Zenodix B2B Landing Page Version: 1.0 Target Environment: Web (Single Page Application) / MCP Stitch Integration
+1. PROJECT OVERVIEW Desarrollo de una Single Page Application (SPA) para "Zenodix", agencia B2B especializada en ecosistemas digitales, e-commerce de alta conversiÃ³n y automatizaciÃ³n de procesos operativos empresariales. El objetivo es una carga ultrarrÃ¡pida, diseÃ±o premium estilo SaaS y captura de leads integrada.
+2. TECHNICAL STACK
+Frontend: HTML5 SemÃ¡ntico, CSS3 (Uso estricto de CSS Custom Properties/Variables), Vanilla JavaScript (ES6+).
+Restricciones: Cero frameworks pesados (No React, No Angular, No Vue). Cero librerÃ­as CSS externas (No Bootstrap, No Tailwind).
+Integraciones: Preparado para webhooks RESTful (n8n).
+Tooling Requerido: Uso obligatorio del MCP de Stitch para la generaciÃ³n de la estructura de archivos, mockups de datos y configuraciÃ³n de endpoints simulados durante el desarrollo.
+3. UI/UX & BRAND GUIDELINES
+Estilo Visual: Minimalista, "SaaS Premium", clean tech, alto contraste. Bordes redondeados sutiles (border-radius: 8px). Espaciado amplio (whitespace).
+TipografÃ­a: Familia Sans-Serif geomÃ©trica y limpia (ej. Inter, Roboto o Montserrat).
+Paleta de Colores (Estricta):
+--color-primary: PÃºrpura/Violeta corporativo profundo (Ref: #2D1B54). Uso en encabezados, textos principales y fondos oscuros.
+--color-accent: Azul ElÃ©ctrico vibrante (Ref: #0055FF). Uso estricto para Call to Actions (CTAs), botones, hover states y el elemento destacado del logo/UI.
+--color-bg-light: Blanco puro (#FFFFFF).
+--color-bg-alt: Gris ultra claro (#F8F9FA) para alternancia de secciones.
+4. COMPONENT ARCHITECTURE & DOM STRUCTURE 4.1. Header / Navbar
+Sticky header. Logo a la izquierda. NavegaciÃ³n en el centro (Servicios, Precios, Contacto). BotÃ³n CTA primario ("Agendar Cita") a la derecha usando --color-accent.
+4.2. Hero Section
+DiseÃ±o de alto impacto.
+H1: "Construimos ecosistemas digitales que venden por ti."
+SubtÃ­tulo: "Desarrollo web ultrarrÃ¡pido, tiendas de alta conversiÃ³n y automatizaciÃ³n operativa con IA."
+Botones: CTA Primario ("Ver Servicios") y CTA Secundario outline ("Hablar con un experto").
+4.3. Services Grid (Tarjetas)
+Estructura CSS Grid (3 columnas en desktop, 1 en mobile).
+Tarjeta 1: "E-commerce & Alta ConversiÃ³n" (Shopify Dropshipping & Custom Brands).
+Tarjeta 2: "Desarrollo Autogestionable & Headless" (WordPress Corporativo & HTML/JS puro).
+Tarjeta 3: "AutomatizaciÃ³n Operativa" (Integraciones n8n, WhatsApp, IA).
+4.4. Pricing Tiers (Estilo SaaS)
+Contenedor Flexbox/Grid con 3 o 4 columnas.
+DiseÃ±o de tarjeta individual: TÃ­tulo del Tier, Precio destacado, Lista de caracterÃ­sticas (ul > li con iconos de check), BotÃ³n de acciÃ³n.
+Requisito UI: La tarjeta central o "Pro" debe estar visualmente destacada (escala 1.05, sombra mÃ¡s profunda box-shadow, borde superior o completo en --color-accent, etiqueta absoluta "Recomendado").
+4.5. Chatbot Floating UI (IntegraciÃ³n n8n)
+Elemento flotante position: fixed; bottom: 20px; right: 20px;.
+BotÃ³n circular tipo burbuja de chat.
+Al hacer clic, alterna la clase para mostrar un contenedor div estilo ventana de chat moderna (Header, Message Area, Input Field, Send Button).
+5. FUNCTIONAL REQUIREMENTS & JAVASCRIPT LOGIC 5.1. Chatbot API Fetching:
+Implementar script en Vanilla JS para manejar el chat.
+Capturar el value del input al hacer clic en enviar o presionar 'Enter'.
+Pintar el mensaje del usuario en el DOM (Message Area).
+Ejecutar funciÃ³n fetch() POST hacia una constante predefinida const N8N_WEBHOOK_URL = 'URL_AQUI'; enviando el texto en formato JSON { "message": "texto" }.
+Manejar la promesa, extraer la respuesta y pintar el mensaje de la IA en el DOM.
+5.2. UI Interactions:
+Smooth scrolling para los enlaces de anclaje de la navegaciÃ³n (scroll-behavior: smooth).
+Configurar Intersection Observer (bÃ¡sico) para aÃ±adir una clase .visible a los elementos del DOM cuando entren al viewport, dejando la estructura CSS lista para animaciones de fade-in (ej. opacity: 0; transform: translateY(20px); transition: all 0.5s ease;).
+6. DELIVERABLES
+index.html (Estructura semÃ¡ntica).
+styles.css (DiseÃ±o responsivo, Mobile First, paleta de colores implementada).
+app.js (LÃ³gica del chatbot y UI interactions).

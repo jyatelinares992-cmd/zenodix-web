@@ -1,0 +1,88 @@
+Line 150:
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    overflow: hidden;
+
+Line 469:
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+Line 772:
+.micro-card {
+    background: #f8f9fa; /* Ultra claro */
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    overflow: hidden;
+
+Line 806:
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+
+Line 817:
+/* Web Mockup (Video) */
+.video-mockup-wrapper {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+
+Line 842:
+.interactive-demo { padding: 1.5rem; justify-content: flex-start; align-items: stretch; display: flex; flex-direction: column; }
+.mini-chat-ui {
+    background: var(--color-bg-alt, #f8f9fa);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+
+Line 1016:
+
+.faq-item {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+
+Line 1102:
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    overflow: hidden;
+
+Line 1244:
+.accordion-item {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    overflow: hidden;
+
+Line 1289:
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+
+Line 1551:
+.srs-chat-container {
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-top: 1rem;
+    overflow: hidden;
+
