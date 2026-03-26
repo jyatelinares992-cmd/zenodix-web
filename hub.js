@@ -259,3 +259,108 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 });
+/* ==========================================================================
+   LIS SAS LOGISTICS MODULE (TMS/WMS)
+   ========================================================================== */
+
+window.switchLogisticsTab = function(tabName) {
+    document.getElementById('content-tms').style.display = (tabName === 'tms') ? 'block' : 'none';
+    document.getElementById('content-wms').style.display = (tabName === 'wms') ? 'block' : 'none';
+    
+    const tmsBtn = document.getElementById('tab-tms');
+    const wmsBtn = document.getElementById('tab-wms');
+    
+    if (tabName === 'tms') {
+        tmsBtn.className = 'btn btn-primary';
+        tmsBtn.style.background = '';
+        tmsBtn.style.color = '';
+        
+        wmsBtn.className = 'btn btn-secondary';
+        wmsBtn.style.background = 'white';
+        wmsBtn.style.color = '#64748b';
+    } else {
+        wmsBtn.className = 'btn btn-primary';
+        wmsBtn.style.background = '#125191';
+        wmsBtn.style.color = 'white';
+        
+        tmsBtn.className = 'btn btn-secondary';
+        tmsBtn.style.background = 'white';
+        tmsBtn.style.color = '#64748b';
+    }
+};
+
+window.openLogisticsForm = function(serviceType) {
+    document.getElementById('lisServiceType').value = serviceType;
+    document.getElementById('modalTitle').innerText = 'Solicitar: ' + serviceType;
+    
+    const destContainer = document.getElementById('destContainer');
+    if (serviceType === 'Almacenamiento WMS') {
+        destContainer.style.display = 'none';
+        document.getElementById('lisOrigin').placeholder = 'Ej: Volumen a almacenar o estibas';
+    } else {
+        destContainer.style.display = 'block';
+        document.getElementById('lisOrigin').placeholder = 'Ej: Bodega Central, Zona Franca';
+    }
+    
+    document.getElementById('lisAlert').style.display = 'none';
+    document.getElementById('lisServiceForm').reset();
+    document.getElementById('serviceModal').style.display = 'flex';
+};
+
+window.submitLisService = async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnLisSubmit');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Procesando...';
+    btn.disabled = true;
+
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    
+    const companyIdRes = await supabase.from('users').select('company_id').eq('id', session.user.id).single();
+    if(companyIdRes.error) {
+        alert('Error validando Tenant: ' + companyIdRes.error.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+    }
+
+    const payload = {
+        company_id: companyIdRes.data.company_id,
+        service_type: document.getElementById('lisServiceType').value,
+        status: 'Buscando Asignación',
+        origin_address: document.getElementById('lisOrigin').value,
+        destination_address: document.getElementById('lisDestination').value || 'N/A',
+        details: { notas: document.getElementById('lisNotes').value }
+    };
+
+    const { data, error } = await supabase.from('lis_logistics_orders').insert([payload]).select();
+
+    const alt = document.getElementById('lisAlert');
+    alt.style.display = 'block';
+
+    if (error) {
+        alt.className = 'alert-error';
+        alt.style.color = '#b91c1c';
+        alt.style.background = '#fee2e2';
+        alt.innerText = error.message;
+    } else {
+        alt.className = 'alert-success';
+        alt.style.color = '#15803d';
+        alt.style.background = '#dcfce7';
+        alt.innerText = '¡Servicio LIS solicitado con éxito!';
+        
+        // Agregar a UI temporalmente para probar
+        const tbody = document.getElementById('logisticsTableBody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>#L-' + data[0].id.substring(0,4).toUpperCase() + '</td><td>' + data[0].service_type + '</td><td>' + data[0].origin_address.substring(0,12) + '...</td><td><span class="badge warning">' + data[0].status + '</span></td><td><button class="icon-btn-small" title="Ver Detalles"><span class="material-symbols-outlined">visibility</span></button></td>';
+        
+        if (tbody.innerText.includes('No hay envíos')) { tbody.innerHTML = ''; }
+        tbody.prepend(tr);
+
+        setTimeout(() => { document.getElementById('serviceModal').style.display = 'none'; }, 2000);
+    }
+    
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+};

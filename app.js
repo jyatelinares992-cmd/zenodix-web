@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const N8N_WEBHOOK_URL = 'https://zenodixprueba.app.n8n.cloud/webhook/zenodix-b2b-sales';
+    const N8N_WEBHOOK_URL = 'https://zenodixweb.app.n8n.cloud/webhook/zenodix-b2b-sales';
     
     // 0. Base64 Helpers for Multimodal Chats
     window.handleFileSelect = function(inputEl, iconId) {

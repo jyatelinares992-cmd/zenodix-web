@@ -226,88 +226,136 @@
 
             <!-- VISTA 4: LOGISTICS -->
             <section id="view-logistics" class="view-section">
-                <!-- Acciones Top -->
-                <div class="logistics-actions">
-                    <button class="btn btn-action" onclick="logisticsWebhook('vehiculo_carga')">
-                        <div class="btn-icon"><span class="material-symbols-outlined">local_shipping</span></div>
-                        <div class="btn-text">
-                            <strong>Solicitar Vehículo Carga</strong>
-                            <span>Furgones, planchones, patinetas</span>
-                        </div>
+                <!-- Pestañas TMS y WMS -->
+                <div class="logistics-tabs" style="display: flex; gap: 12px; margin-bottom: 30px;">
+                    <button class="btn btn-primary" onclick="switchLogisticsTab('tms')" id="tab-tms" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem; padding: 14px;">
+                        <span class="material-symbols-outlined">local_shipping</span> TMS - Control de Transporte
                     </button>
-                    <button class="btn btn-action" onclick="logisticsWebhook('auxiliar_mensajero')">
-                        <div class="btn-icon"><span class="material-symbols-outlined">sports_motorsports</span></div>
-                        <div class="btn-text">
-                            <strong>Solicitar Auxiliar/Mensajero</strong>
-                            <span>Diligencias y paquetería express</span>
-                        </div>
-                    </button>
-                    <button class="btn btn-action secondary" onclick="window.open('#tms', '_blank')">
-                        <div class="btn-icon"><span class="material-symbols-outlined">explore</span></div>
-                        <div class="btn-text">
-                            <strong>Ir al TMS Completo</strong>
-                            <span>Gestión avanzada de fletes</span>
-                        </div>
+                    <button class="btn btn-secondary" onclick="switchLogisticsTab('wms')" id="tab-wms" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem; padding: 14px; background: white; color: #64748b; border: 1px solid #cbd5e1;">
+                        <span class="material-symbols-outlined">warehouse</span> WMS - Bodegaje
                     </button>
                 </div>
 
-                <!-- DataGrid -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Últimos Envíos Operativos</h3>
-                        <div class="table-actions">
-                            <button class="icon-btn"><span class="material-symbols-outlined">filter_list</span></button>
-                            <button class="icon-btn"><span class="material-symbols-outlined">download</span></button>
+                <!-- CONTENEDOR TMS -->
+                <div id="content-tms">
+                    <h3 style="margin-bottom: 16px; color: #125191; font-size: 1.2rem;">Solicitar Servicios LIS SAS</h3>
+                    <!-- Acciones Rapidas -->
+                    <div class="logistics-actions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 30px;">
+                        
+                        <button class="btn btn-action" onclick="openLogisticsForm('Mensajería')">
+                            <div class="btn-icon"><span class="material-symbols-outlined">mail</span></div>
+                            <div class="btn-text">
+                                <strong>Mensajería</strong>
+                                <span>Documentos y paquetes pequeños</span>
+                            </div>
+                        </button>
+                        
+                        <button class="btn btn-action" onclick="openLogisticsForm('Última Milla')">
+                            <div class="btn-icon"><span class="material-symbols-outlined">two_wheeler</span></div>
+                            <div class="btn-text">
+                                <strong>Última Milla</strong>
+                                <span>Carros y Mensajeros Urbanos</span>
+                            </div>
+                        </button>
+                        
+                        <button class="btn btn-action" onclick="openLogisticsForm('Paquetería')">
+                            <div class="btn-icon"><span class="material-symbols-outlined">inventory_2</span></div>
+                            <div class="btn-text">
+                                <strong>Paquetería</strong>
+                                <span>Cajas y mercancía general</span>
+                            </div>
+                        </button>
+                        
+                        <button class="btn btn-action" onclick="openLogisticsForm('Envío Nacional')">
+                            <div class="btn-icon"><span class="material-symbols-outlined">public</span></div>
+                            <div class="btn-text">
+                                <strong>Envío Nacional</strong>
+                                <span>Cobertura a todo el país</span>
+                            </div>
+                        </button>
+                        
+                        <button class="btn btn-action" onclick="openLogisticsForm('Carga Masiva')" style="grid-column: 1 / -1; display: flex; justify-content: center; background: #e0f2fe; border: 1px solid #bae6fd;">
+                            <div class="btn-icon" style="background: #0284c7; color: white;"><span class="material-symbols-outlined">airport_shuttle</span></div>
+                            <div class="btn-text" style="text-align: left;">
+                                <strong style="color: #0369a1; font-size: 1.1rem;">Carga Masiva Premium</strong>
+                                <span style="color: #0c4a6e;">Furgones, planchones y Tractomulas exclusivos</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- DataGrid Existente -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Historial de Envíos LIS</h3>
+                            <div class="table-actions">
+                                <button class="icon-btn"><span class="material-symbols-outlined">filter_list</span></button>
+                                <button class="icon-btn"><span class="material-symbols-outlined">download</span></button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-grid" id="logisticsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Servicio</th>
+                                            <th>Tipo de Carga</th>
+                                            <th>Origen -> Destino</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="logisticsTableBody">
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; color: #94a3b8; padding: 20px;">No hay envíos registrados aún.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="data-grid">
-                                <thead>
-                                    <tr>
-                                        <th>ID Servicio</th>
-                                        <th>Tipo de Carga</th>
-                                        <th>Fecha Estimada</th>
-                                        <th>Estado</th>
-                                        <th>Costo (COP)</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#L-9042</td>
-                                        <td>Paquetería Express</td>
-                                        <td>24 Mar 2026</td>
-                                        <td><span class="badge success">Entregado</span></td>
-                                        <td>$45,000</td>
-                                        <td><button class="icon-btn-small" title="Ver Detalles"><span class="material-symbols-outlined">visibility</span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#L-9045</td>
-                                        <td>Furgón Sencillo (Masiva)</td>
-                                        <td>25 Mar 2026</td>
-                                        <td><span class="badge primary">En Ruta</span></td>
-                                        <td>$850,000</td>
-                                        <td><button class="icon-btn-small" title="Seguimiento GPS"><span class="material-symbols-outlined">location_on</span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#L-9048</td>
-                                        <td>Mensajero Motorizado</td>
-                                        <td>25 Mar 2026</td>
-                                        <td><span class="badge warning">Pendiente Asignación</span></td>
-                                        <td>$15,000</td>
-                                        <td><button class="icon-btn-small" title="Editar"><span class="material-symbols-outlined">edit</span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#L-9051</td>
-                                        <td>Transporte Ejecutivo</td>
-                                        <td>27 Mar 2026</td>
-                                        <td><span class="badge info">Programado</span></td>
-                                        <td>$120,000</td>
-                                        <td><button class="icon-btn-small" title="Ver Detalles"><span class="material-symbols-outlined">visibility</span></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                </div>
+
+                <!-- CONTENEDOR WMS -->
+                <div id="content-wms" style="display: none;">
+                    <div class="omni-container" style="background: white; border: 1px solid #e2e8f0;">
+                        <span class="material-symbols-outlined placeholder-icon" style="font-size: 4rem; color: #cbd5e1;">warehouse</span>
+                        <h3 class="placeholder-text" style="color: #125191;">WMS - Gestión de Inventario Inteligente</h3>
+                        <p class="placeholder-subtext">Control de estibas, picking y packing en nuestras Bodegas LIS SAS operadas por Inteligencia Artificial.</p>
+                        <button class="btn btn-primary mt-4" onclick="openLogisticsForm('Almacenamiento WMS')" style="margin-top: 24px;">
+                            <span class="material-symbols-outlined">add_box</span> Solicitar Espacio en Bodega
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MODAL: FORMULARIO DINAMICO DE SERVICIO LIS -->
+                <div id="serviceModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
+                    <div class="card" style="width: 500px; max-width: 90%; background: white;">
+                        <div class="card-header" style="justify-content: space-between;">
+                            <h3 class="card-title" id="modalTitle">Solicitar Servicio</h3>
+                            <button class="icon-btn" onclick="document.getElementById('serviceModal').style.display='none'"><span class="material-symbols-outlined">close</span></button>
+                        </div>
+                        <div class="card-body">
+                            <form id="lisServiceForm" onsubmit="submitLisService(event)">
+                                <input type="hidden" id="lisServiceType">
+                                
+                                <div class="form-group" style="margin-bottom: 16px;">
+                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Dirección de Recogida (Origen)</label>
+                                    <input type="text" id="lisOrigin" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Ej: Bodega Central, Zona Franca">
+                                </div>
+                                
+                                <div class="form-group" id="destContainer" style="margin-bottom: 16px;">
+                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Dirección de Entrega (Destino)</label>
+                                    <input type="text" id="lisDestination" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Ej: Calle 100 #15-20, Edificio">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 24px;">
+                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Detalles de la Carga / Notas Adicionales</label>
+                                    <textarea id="lisNotes" rows="3" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Medidas, peso aproximado o instrucciones especiales..."></textarea>
+                                </div>
+                                <div id="lisAlert" style="display: none; padding: 10px; border-radius: 6px; background: #dcfce7; color: #15803d; border: 1px solid #86efac; margin-bottom: 16px;"></div>
+                                
+                                <button type="submit" class="btn btn-primary btn-full" id="btnLisSubmit">🚀 Enviar Solicitud a LIS SAS</button>
+                            </form>
                         </div>
                     </div>
                 </div>
