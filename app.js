@@ -1011,6 +1011,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const ideaFileInput = document.getElementById('ideaFileInput');
     const ideaMicBtn = document.getElementById('ideaMicBtn');
     
+    // Lead Capture Logic
+    const leadNameInput = document.getElementById('leadName');
+    const leadPhoneInput = document.getElementById('leadPhone');
+    const saveLeadBtn = document.getElementById('saveLeadBtn');
+    const initialAiGreeting = document.getElementById('initialAiGreeting');
+
+    let capturedLeadData = {
+        name: localStorage.getItem('zenodix_ai_lead_name') || '',
+        phone: localStorage.getItem('zenodix_ai_lead_phone') || ''
+    };
+
+    const activateIdeaChatInputs = (isActive) => {
+        if(ideaChatInput) ideaChatInput.disabled = !isActive;
+        if(ideaSendBtn) ideaSendBtn.disabled = !isActive;
+        if(ideaFileInput) ideaFileInput.disabled = !isActive;
+        if(ideaMicBtn) ideaMicBtn.disabled = !isActive;
+        
+        if(!isActive) {
+            if(ideaChatInput) ideaChatInput.placeholder = 'Regístrate arriba primero...';
+        } else {
+            if(ideaChatInput) ideaChatInput.placeholder = 'Escribe tu idea aquí...';
+        }
+    };
+
+    if (capturedLeadData.name && capturedLeadData.phone) {
+        if(initialAiGreeting) {
+            initialAiGreeting.innerHTML = `¡Hola de nuevo, <strong>${capturedLeadData.name}</strong>! Soy tu Consultor AI. Escríbeme o sube un audio contándome qué quieres construir hoy.`;
+        }
+        activateIdeaChatInputs(true);
+    } else {
+        activateIdeaChatInputs(false);
+        if (saveLeadBtn) {
+            saveLeadBtn.addEventListener('click', () => {
+                const nameVal = leadNameInput.value.trim();
+                const phoneVal = leadPhoneInput.value.trim();
+                
+                if(!nameVal || !phoneVal) {
+                    alert('Por favor ingresa tu nombre y WhatsApp para poder atenderte.');
+                    return;
+                }
+                
+                capturedLeadData.name = nameVal;
+                capturedLeadData.phone = phoneVal;
+                localStorage.setItem('zenodix_ai_lead_name', nameVal);
+                localStorage.setItem('zenodix_ai_lead_phone', phoneVal);
+                
+                initialAiGreeting.innerHTML = `¡Excelente <strong>${nameVal}</strong>! Ya tengo tu contacto guardado. Dime, ¿en qué te puedo ayudar hoy?`;
+                activateIdeaChatInputs(true);
+                if(ideaChatInput) ideaChatInput.focus();
+            });
+        }
+    }
+    
     let ideaMediaRecorder;
     let ideaAudioChunks = [];
     let isIdeaRecording = false;
@@ -1119,9 +1172,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        sessionId: currentSessionId,
+                        sessionId: typeof currentSessionId !== 'undefined' ? currentSessionId : localStorage.getItem('zenodix_ai_session'),
                         message: text || "Analiza el archivo adjunto.",
                         action: "idea_consult",
+                        clientName: capturedLeadData.name,
+                        clientWhatsApp: capturedLeadData.phone,
                         imageBase64: base64Image,
                         audioBase64: base64Audio
                     })
@@ -1296,5 +1351,66 @@ document.addEventListener('DOMContentLoaded', () => {
     window.srsFinalizeWhatsApp = function() {
         window.open(`https://wa.me/573214741783?text=Hola%20equipo%20t%C3%A9cnico%20de%20Zenodix.%20Quiero%20iniciar%20un%20proyecto%20de%20Desarrollo.`, '_blank');
     };
+
+    // ----------------------------------------
+    // Floating Chat Lead Capture (Fix)
+    // ----------------------------------------
+    const floatLeadForm = document.getElementById('floatLeadForm');
+    const floatLeadName = document.getElementById('floatLeadName');
+    const floatLeadPhone = document.getElementById('floatLeadPhone');
+    const floatLeadSaveBtn = document.getElementById('floatLeadSaveBtn');
+    const floatGreetingMessage = document.getElementById('floatGreetingMessage');
+    
+    const applyFloatingLeadState = () => {
+        const floatInput = document.getElementById('chatInput'); 
+        const floatSend = document.getElementById('sendChatBtn');
+        const floatMic = document.getElementById('floatMicBtn');
+        const _quickRepliesData = document.getElementById('quickRepliesContainer');
+
+        if (!floatInput) return;
+        if (capturedLeadData.name && capturedLeadData.phone) {
+            if (floatLeadForm) floatLeadForm.style.display = 'none';
+            if (_quickRepliesData) _quickRepliesData.style.display = 'flex';
+            if (floatGreetingMessage) floatGreetingMessage.innerHTML = `¡Hola de nuevo, <strong>${capturedLeadData.name}</strong>!<br>¿Cómo podemos ayudarte hoy?`;
+            floatInput.disabled = false;
+            if(floatSend) floatSend.disabled = false;
+            if(floatMic) floatMic.disabled = false;
+            floatInput.placeholder = "Escribe tu mensaje...";
+        } else {
+            if (floatLeadForm) floatLeadForm.style.display = 'flex';
+            if (_quickRepliesData) _quickRepliesData.style.display = 'none';
+            floatInput.disabled = true;
+            if(floatSend) floatSend.disabled = true;
+            if(floatMic) floatMic.disabled = true;
+            floatInput.placeholder = "Inicia el chat arriba...";
+        }
+    };
+    
+    applyFloatingLeadState();
+    
+    if (floatLeadSaveBtn) {
+        floatLeadSaveBtn.addEventListener('click', () => {
+            const name = floatLeadName.value.trim();
+            const phone = floatLeadPhone.value.trim();
+            
+            if (!name || !phone) {
+                alert("Por favor ingresa tu Nombre y WhatsApp para continuar.");
+                return;
+            }
+            
+            // Guardar Global
+            capturedLeadData.name = name;
+            capturedLeadData.phone = phone;
+            localStorage.setItem('zenodix_ai_lead_name', name);
+            localStorage.setItem('zenodix_ai_lead_phone', phone);
+            
+            applyFloatingLeadState();
+            
+            // Checkear si el SRS Chat necesita actualizarse
+            if (typeof activateIdeaChatInputs === 'function') {
+                activateIdeaChatInputs(true);
+            }
+        });
+    }
 
 });
