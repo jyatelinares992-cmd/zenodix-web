@@ -32,28 +32,43 @@
                 <span class="material-symbols-outlined nav-icon">dashboard</span>
                 <span class="nav-label">Dashboard (Inicio)</span>
             </button>
-            <button class="nav-item" data-view="omnichannel">
-                <span class="material-symbols-outlined nav-icon">forum</span>
-                <span class="nav-label">Bandeja Omnicanal</span>
+            <button class="nav-item" data-view="ads-analyzer">
+                <span class="material-symbols-outlined nav-icon">analytics</span>
+                <span class="nav-label">Meta Ads Analyzer</span>
             </button>
-            <button class="nav-item" data-view="social">
-                <span class="material-symbols-outlined nav-icon">magic_button</span>
-                <span class="nav-label">Generador Social IA</span>
+            <button class="nav-item" data-view="creative-studio">
+                <span class="material-symbols-outlined nav-icon">brush</span>
+                <span class="nav-label">Studio Creativo IA</span>
             </button>
-            <button class="nav-item" data-view="logistics">
-                <span class="material-symbols-outlined nav-icon">local_shipping</span>
-                <span class="nav-label">Logística Avanzada</span>
+            <button class="nav-item" data-view="copywriter">
+                <span class="material-symbols-outlined nav-icon">edit_document</span>
+                <span class="nav-label">Copywriter Pro</span>
+            </button>
+            <button class="nav-item" data-view="spy">
+                <span class="material-symbols-outlined nav-icon">travel_explore</span>
+                <span class="nav-label">Espía de Competencia</span>
             </button>
             
             <div class="nav-divider"></div>
 
-            <button class="nav-item" data-view="billing">
-                <span class="material-symbols-outlined nav-icon">receipt_long</span>
-                <span class="nav-label">Facturación</span>
+            <button class="nav-item" data-view="crm">
+                <span class="material-symbols-outlined nav-icon">view_kanban</span>
+                <span class="nav-label">Zenodix CRM</span>
             </button>
+            <button class="nav-item" data-view="omnichannel">
+                <span class="material-symbols-outlined nav-icon">forum</span>
+                <span class="nav-label">Bandeja Omnicanal</span>
+            </button>
+            <button class="nav-item" data-view="web-auditor">
+                <span class="material-symbols-outlined nav-icon">troubleshoot</span>
+                <span class="nav-label">Auditor Web & App</span>
+            </button>
+
+            <div class="nav-divider"></div>
+
             <button class="nav-item" data-view="settings">
                 <span class="material-symbols-outlined nav-icon">settings</span>
-                <span class="nav-label">Configuración</span>
+                <span class="nav-label">Configuración & Prompts</span>
             </button>
             
             <div class="nav-divider"></div>
@@ -75,7 +90,7 @@
                 </button>
                 <div class="greeting">
                     <h2 id="viewTitle">Dashboard</h2>
-                    <p>Bienvenido de vuelta, Equipo B2B</p>
+                    <p>Bienvenido al Centro de Control Comercial</p>
                 </div>
             </div>
             <div class="header-right">
@@ -95,7 +110,7 @@
                     <div class="avatar">AD</div>
                     <div class="user-info">
                         <span class="user-name">Admin</span>
-                        <span class="user-role">Enterprise</span>
+                        <span class="user-role">Agencia</span>
                     </div>
                 </div>
             </div>
@@ -112,7 +127,7 @@
                             <span class="material-symbols-outlined">account_balance_wallet</span>
                         </div>
                         <div class="metric-data">
-                            <p class="metric-label">Inversión Total</p>
+                            <p class="metric-label">Presupuesto Ejecutado</p>
                             <h3 class="metric-value">$8,450 USD</h3>
                         </div>
                     </div>
@@ -121,8 +136,8 @@
                             <span class="material-symbols-outlined">trending_up</span>
                         </div>
                         <div class="metric-data">
-                            <p class="metric-label">ROAS Promedio</p>
-                            <h3 class="metric-value" style="color: #00a94f;">3.4x</h3>
+                            <p class="metric-label">CPA Promedio (AI Optimize)</p>
+                            <h3 class="metric-value" style="color: #00a94f;">$3.4 USD</h3>
                         </div>
                     </div>
                     <div class="metric-card">
@@ -130,16 +145,16 @@
                             <span class="material-symbols-outlined">group_add</span>
                         </div>
                         <div class="metric-data">
-                            <p class="metric-label">Leads Generados</p>
+                            <p class="metric-label">Leads Capturados (Nuevos)</p>
                             <h3 class="metric-value">1,245</h3>
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-icon-box" style="background: rgba(18, 81, 145, 0.1); color: #125191;">
-                            <span class="material-symbols-outlined">inventory_2</span>
+                            <span class="material-symbols-outlined">auto_awesome</span>
                         </div>
                         <div class="metric-data">
-                            <p class="metric-label">Envíos Logísticos Activos</p>
+                            <p class="metric-label">Creativos AI Generados</p>
                             <h3 class="metric-value">34</h3>
                         </div>
                     </div>
@@ -147,7 +162,7 @@
 
                 <div class="chart-container card">
                     <div class="card-header">
-                        <h3 class="card-title">Ventas vs Inversión</h3>
+                        <h3 class="card-title">Retorno de Inversión (ROAS) vs Gasto Meta Ads</h3>
                     </div>
                     <div class="card-body">
                         <canvas id="salesChart" height="80"></canvas>
@@ -155,38 +170,49 @@
                 </div>
             </section>
 
-            <!-- VISTA 2: OMNICHANNEL -->
-            <section id="view-omnichannel" class="view-section">
-                <div class="omni-container">
-                    <span class="material-symbols-outlined placeholder-icon">forum</span>
-                    <h3 class="placeholder-text">[Área reservada para integración de Bandeja Unificada]</h3>
-                    <p class="placeholder-subtext">Aquí se concentrarán todos los mensajes de WhatsApp, IG y FB Messenger para ser contestados por la IA o agentes humanos.</p>
+            <!-- VISTA 2: META ADS ANALYZER -->
+            <section id="view-ads-analyzer" class="view-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🩺 Auditor Maestro: Meta Ads & TikTok</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="drag-drop-zone" id="csvDropZone" style="max-width: 600px; margin: 0 auto 30px auto; padding: 40px;">
+                            <span class="material-symbols-outlined dz-icon" style="font-size: 3rem;">table_chart</span>
+                            <h3 style="margin-top: 15px;">Sube tu reporte CSV de Facebook Ads</h3>
+                            <p class="dz-text" style="color: #64748b; margin-top: 5px;">Claude 3.5 analizará el Breakdown Effect y te dirá dónde estás perdiendo dinero.</p>
+                            <input type="file" id="csvFile" hidden accept=".csv, .xlsx">
+                        </div>
+                        <button class="btn btn-primary" onclick="document.getElementById('csvFile').click()">
+                            <span class="material-symbols-outlined">upload</span> Cargar Métrica de Pauta
+                        </button>
+                    </div>
                 </div>
             </section>
 
-            <!-- VISTA 3: SOCIAL AI GENERATOR -->
-            <section id="view-social" class="view-section">
+            <!-- VISTA 3: CREATIVE STUDIO (Gemini / Claude) -->
+            <section id="view-creative-studio" class="view-section">
                 <div class="split-layout">
                     <!-- Left: Input -->
                     <div class="split-col input-col card">
                         <div class="card-header">
-                            <h3 class="card-title">Configuración de Campaña</h3>
+                            <h3 class="card-title">Generador Visual y Copy</h3>
                         </div>
                         <div class="card-body">
                             <div class="drag-drop-zone" id="dragDropZone">
-                                <span class="material-symbols-outlined dz-icon">cloud_upload</span>
-                                <p class="dz-text">Arrastra imágenes del producto aquí o haz clic para subir</p>
-                                <input type="file" id="campaignFile" hidden accept="image/*">
+                                <span class="material-symbols-outlined dz-icon">add_photo_alternate</span>
+                                <p class="dz-text">Arrastra el Video o Foto cruda del producto (Gemini lo analizará y mejorará)</p>
+                                <input type="file" id="campaignFile" hidden accept="image/*, video/*">
                             </div>
 
-                            <div class="form-group">
-                                <label for="campaignContext">Contexto / Objetivo de la Publicación</label>
-                                <textarea id="campaignContext" rows="4" placeholder="Ej: Lanzamiento de nueva línea corporativa. Queremos destacar eficiencia y seguridad..."></textarea>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="campaignContext">¿De qué trata este anuncio y a quién le vendes?</label>
+                                <textarea id="campaignContext" rows="4" placeholder="Ej: Es un e-commerce de tenis. Quiero un hook para personas que hacen crossfit..."></textarea>
                             </div>
 
-                            <button class="btn btn-primary btn-full" onclick="generateCampaign()">
-                                <span class="material-symbols-outlined">auto_awesome</span>
-                                ✨ Generar Campaña
+                            <button class="btn btn-primary btn-full mt-auto" onclick="generateCampaign()">
+                                <span class="material-symbols-outlined">magic_button</span>
+                                Generar Arte & Copy
                             </button>
                         </div>
                     </div>
@@ -194,179 +220,126 @@
                     <!-- Right: Output -->
                     <div class="split-col output-col card">
                         <div class="card-header">
-                            <h3 class="card-title">Preview Multiplataforma</h3>
+                            <h3 class="card-title">Resultado IA</h3>
                         </div>
                         <div class="card-body">
                             <div class="tabs">
-                                <div class="tab active" data-tab="meta">Meta Ads</div>
-                                <div class="tab" data-tab="tiktok">TikTok</div>
-                                <div class="tab" data-tab="google">Google Ads</div>
+                                <div class="tab active" data-tab="meta">Anuncio Meta</div>
+                                <div class="tab" data-tab="tiktok">Guion TikTok</div>
                             </div>
                             
-                            <div class="preview-box">
-                                <div class="mockup-img">
-                                    <span class="material-symbols-outlined">image</span>
-                                    Visual Generado
+                            <div class="preview-box" style="margin-top: 20px; flex-grow: 1;">
+                                <div class="mockup-img" style="aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: #e2e8f0; color: #64748b; border-radius: 8px; margin-bottom: 16px;">
+                                    <span class="material-symbols-outlined" style="font-size: 3rem;">image</span>
+                                    <span>[Imagen Renderizada por Gemini/Midjourney]</span>
                                 </div>
                                 <div class="mockup-text">
-                                    <p><strong>Titular Generado IA:</strong> Revoluciona tu operación logística hoy.</p>
-                                    <p>Descubre el sistema operativo de transporte que aumentará tu ROAS en un 300%. Automatización, trazabilidad e inteligencia en una sola plataforma. 🚀</p>
-                                    <p>#Logistics #B2B #ZenodixTech</p>
+                                    <p><strong>🔥 [Titular Ganador de Hook]</strong></p>
+                                    <p>Aquí se redactará el Copy utilizando modelos de comportamiento, urgencia y AIDA. Todo generado desde tu prompt y la imagen adjunta.</p>
                                 </div>
                             </div>
-
-                            <button class="btn btn-secondary btn-full mt-auto" onclick="publishCampaign()">
-                                <span class="material-symbols-outlined">send</span>
-                                Publicar Ahora
-                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- VISTA 4: LOGISTICS -->
-            <section id="view-logistics" class="view-section">
-                <!-- Pestañas TMS y WMS -->
-                <div class="logistics-tabs" style="display: flex; gap: 12px; margin-bottom: 30px;">
-                    <button class="btn btn-primary" onclick="switchLogisticsTab('tms')" id="tab-tms" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem; padding: 14px;">
-                        <span class="material-symbols-outlined">local_shipping</span> TMS - Control de Transporte
-                    </button>
-                    <button class="btn btn-secondary" onclick="switchLogisticsTab('wms')" id="tab-wms" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem; padding: 14px; background: white; color: #64748b; border: 1px solid #cbd5e1;">
-                        <span class="material-symbols-outlined">warehouse</span> WMS - Bodegaje
-                    </button>
-                </div>
-
-                <!-- CONTENEDOR TMS -->
-                <div id="content-tms">
-                    <h3 style="margin-bottom: 16px; color: #125191; font-size: 1.2rem;">Solicitar Servicios LIS SAS</h3>
-                    <!-- Acciones Rapidas -->
-                    <div class="logistics-actions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 30px;">
-                        
-                        <button class="btn btn-action" onclick="openLogisticsForm('Mensajería')">
-                            <div class="btn-icon"><span class="material-symbols-outlined">mail</span></div>
-                            <div class="btn-text">
-                                <strong>Mensajería</strong>
-                                <span>Documentos y paquetes pequeños</span>
-                            </div>
-                        </button>
-                        
-                        <button class="btn btn-action" onclick="openLogisticsForm('Última Milla')">
-                            <div class="btn-icon"><span class="material-symbols-outlined">two_wheeler</span></div>
-                            <div class="btn-text">
-                                <strong>Última Milla</strong>
-                                <span>Carros y Mensajeros Urbanos</span>
-                            </div>
-                        </button>
-                        
-                        <button class="btn btn-action" onclick="openLogisticsForm('Paquetería')">
-                            <div class="btn-icon"><span class="material-symbols-outlined">inventory_2</span></div>
-                            <div class="btn-text">
-                                <strong>Paquetería</strong>
-                                <span>Cajas y mercancía general</span>
-                            </div>
-                        </button>
-                        
-                        <button class="btn btn-action" onclick="openLogisticsForm('Envío Nacional')">
-                            <div class="btn-icon"><span class="material-symbols-outlined">public</span></div>
-                            <div class="btn-text">
-                                <strong>Envío Nacional</strong>
-                                <span>Cobertura a todo el país</span>
-                            </div>
-                        </button>
-                        
-                        <button class="btn btn-action" onclick="openLogisticsForm('Carga Masiva')" style="grid-column: 1 / -1; display: flex; justify-content: center; background: #e0f2fe; border: 1px solid #bae6fd;">
-                            <div class="btn-icon" style="background: #0284c7; color: white;"><span class="material-symbols-outlined">airport_shuttle</span></div>
-                            <div class="btn-text" style="text-align: left;">
-                                <strong style="color: #0369a1; font-size: 1.1rem;">Carga Masiva Premium</strong>
-                                <span style="color: #0c4a6e;">Furgones, planchones y Tractomulas exclusivos</span>
-                            </div>
-                        </button>
+            <!-- VISTA 4: COPYWRITER -->
+            <section id="view-copywriter" class="view-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✍️ Copywriter Experto de Landing Pages</h3>
                     </div>
-
-                    <!-- DataGrid Existente -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Historial de Envíos LIS</h3>
-                            <div class="table-actions">
-                                <button class="icon-btn"><span class="material-symbols-outlined">filter_list</span></button>
-                                <button class="icon-btn"><span class="material-symbols-outlined">download</span></button>
-                            </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>URL de tu Landing Page actual o Descripción del Servicio</label>
+                            <input type="text" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="https://tu-pagina.com o texto del producto...">
                         </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="data-grid" id="logisticsTable">
-                                    <thead>
-                                        <tr>
-                                            <th>ID Servicio</th>
-                                            <th>Tipo de Carga</th>
-                                            <th>Origen -> Destino</th>
-                                            <th>Estado</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="logisticsTableBody">
-                                        <tr>
-                                            <td colspan="5" style="text-align: center; color: #94a3b8; padding: 20px;">No hay envíos registrados aún.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CONTENEDOR WMS -->
-                <div id="content-wms" style="display: none;">
-                    <div class="omni-container" style="background: white; border: 1px solid #e2e8f0;">
-                        <span class="material-symbols-outlined placeholder-icon" style="font-size: 4rem; color: #cbd5e1;">warehouse</span>
-                        <h3 class="placeholder-text" style="color: #125191;">WMS - Gestión de Inventario Inteligente</h3>
-                        <p class="placeholder-subtext">Control de estibas, picking y packing en nuestras Bodegas LIS SAS operadas por Inteligencia Artificial.</p>
-                        <button class="btn btn-primary mt-4" onclick="openLogisticsForm('Almacenamiento WMS')" style="margin-top: 24px;">
-                            <span class="material-symbols-outlined">add_box</span> Solicitar Espacio en Bodega
+                        <button class="btn btn-secondary mt-2">
+                            Reescribir con Framework PAS <span class="material-symbols-outlined" style="font-size: 1.2rem; margin-left: 5px;">bolt</span>
                         </button>
                     </div>
                 </div>
+            </section>
 
-                <!-- MODAL: FORMULARIO DINAMICO DE SERVICIO LIS -->
-                <div id="serviceModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center;">
-                    <div class="card" style="width: 500px; max-width: 90%; background: white;">
-                        <div class="card-header" style="justify-content: space-between;">
-                            <h3 class="card-title" id="modalTitle">Solicitar Servicio</h3>
-                            <button class="icon-btn" onclick="document.getElementById('serviceModal').style.display='none'"><span class="material-symbols-outlined">close</span></button>
-                        </div>
-                        <div class="card-body">
-                            <form id="lisServiceForm" onsubmit="submitLisService(event)">
-                                <input type="hidden" id="lisServiceType">
-                                
-                                <div class="form-group" style="margin-bottom: 16px;">
-                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Dirección de Recogida (Origen)</label>
-                                    <input type="text" id="lisOrigin" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Ej: Bodega Central, Zona Franca">
-                                </div>
-                                
-                                <div class="form-group" id="destContainer" style="margin-bottom: 16px;">
-                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Dirección de Entrega (Destino)</label>
-                                    <input type="text" id="lisDestination" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Ej: Calle 100 #15-20, Edificio">
-                                </div>
-
-                                <div class="form-group" style="margin-bottom: 24px;">
-                                    <label style="display: block; margin-bottom: 6px; font-weight: 600;">Detalles de la Carga / Notas Adicionales</label>
-                                    <textarea id="lisNotes" rows="3" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Medidas, peso aproximado o instrucciones especiales..."></textarea>
-                                </div>
-                                <div id="lisAlert" style="display: none; padding: 10px; border-radius: 6px; background: #dcfce7; color: #15803d; border: 1px solid #86efac; margin-bottom: 16px;"></div>
-                                
-                                <button type="submit" class="btn btn-primary btn-full" id="btnLisSubmit">🚀 Enviar Solicitud a LIS SAS</button>
-                            </form>
+            <!-- VISTA 5: SPY DE COMPETENCIA -->
+            <section id="view-spy" class="view-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🔍 Inteligencia Competitiva B2B</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="placeholder-subtext">Conectado a Meta Ads Library y LinkedIn. Ingresa el nombre o URL de tu competidor para extraer sus mejores anuncios y ángulos de venta.</p>
+                        <div class="form-group" style="margin-top: 20px; display: flex; gap: 10px;">
+                            <input type="text" style="flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px;" placeholder="Ej: Nombre de la competencia...">
+                            <button class="btn btn-primary">Extraer Ads</button>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- VISTA 6: CRM -->
+            <section id="view-crm" class="view-section">
+                <div class="card-header" style="margin-bottom: 20px;">
+                    <h3 class="card-title">📇 Zenodix CRM (Pipeline Kanban)</h3>
+                    <button class="btn btn-primary"><span class="material-symbols-outlined">add</span> Nuevo Lead</button>
+                </div>
+                <div class="omni-container" style="background: white; border: 1px dashed #cbd5e1; display:flex; align-items:flex-start; padding: 20px;">
+                    <!-- Simulacion de Tablero Kanban -->
+                    <div style="flex: 1; padding: 15px; background: #f8fafc; border-radius: 8px; margin: 0 10px;">
+                        <h4 style="margin-bottom: 15px; color: #475569; border-bottom: 2px solid #3b82f6; padding-bottom: 5px;">Nuevos Leads (AI Temp: 🔥 Alta)</h4>
+                        <div style="background: white; padding: 15px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #ef4444;">
+                            <strong>Juan Pérez</strong>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">Llegó de Meta Ads. Puntaje: 95/100</p>
+                        </div>
+                    </div>
+                    <div style="flex: 1; padding: 15px; background: #f8fafc; border-radius: 8px; margin: 0 10px;">
+                        <h4 style="margin-bottom: 15px; color: #475569; border-bottom: 2px solid #eab308; padding-bottom: 5px;">En Negociación</h4>
+                    </div>
+                    <div style="flex: 1; padding: 15px; background: #f8fafc; border-radius: 8px; margin: 0 10px;">
+                        <h4 style="margin-bottom: 15px; color: #475569; border-bottom: 2px solid #22c55e; padding-bottom: 5px;">Cerrados Ganados</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTA 7: OMNICHANNEL -->
+            <section id="view-omnichannel" class="view-section">
+                <div class="omni-container">
+                    <span class="material-symbols-outlined placeholder-icon" style="color: #25D366; font-size: 4rem;">chat</span>
+                    <h3 class="placeholder-text">[Bandeja Unificada Oficial]</h3>
+                    <p class="placeholder-subtext">Aquí responderás todos los WhatsApp de tus clientes, usando los Webhooks Meta Cloud API oficiales (Antiban), y enviarás pauta de Re-Marketing descontando automáticamente de tu saldo.</p>
                 </div>
             </section>
             
-            <section id="view-billing" class="view-section">
-                <!-- Placeholder for future tabs -->
-                <div class="omni-container"><p>Módulo de Facturación en Construcción</p></div>
+            <!-- VISTA 8: WEB AUDITOR (CROSS SELL ENGINE) -->
+            <section id="view-web-auditor" class="view-section">
+                <div class="card" style="border: 2px solid #125191; background: #f0f9ff;">
+                    <div class="card-header" style="border-bottom: none;">
+                        <h3 class="card-title" style="color: #0c4a6e;">🛠️ Auditor de Páginas Web (Aumenta Conversión)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p style="color: #0369a1; margin-bottom: 20px;">Deja que nuestro motor AI analice la velocidad, UX y copywriting de tu página web actual para decirte exactamente por qué no vendes.</p>
+                        <div class="form-group" style="display: flex; gap: 10px;">
+                            <input type="url" style="flex: 1; padding: 12px; border: 1px solid #bae6fd; border-radius: 6px;" placeholder="https://mi-tienda-lenta.com">
+                            <button class="btn btn-primary" style="background: #0284c7;">Auditar Web</button>
+                        </div>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 8px; text-align: center; border: 1px dashed #cbd5e1;">
+                            <span class="material-symbols-outlined" style="font-size: 2rem; color: #ef4444; margin-bottom: 10px;">warning</span>
+                            <h4 style="color: #334155; margin-bottom: 10px;">¿Sabías que una mala web espanta al 60% de los clics pagados?</h4>
+                            <p style="color: #64748b; margin-bottom: 15px; font-size: 0.9rem;">Si sacas menos de 60 puntos en esta auditoría, tu pauta publicitaria es tirar el dinero.</p>
+                            <button class="btn btn-secondary">Cotizar una Aplicación/Web rápida con Zenodix Tech</button>
+                        </div>
+                    </div>
+                </div>
             </section>
+
+            <!-- VISTA 9: SETTINGS -->
             <section id="view-settings" class="view-section">
-                <div class="omni-container"><p>Módulo de Configuración en Construcción</p></div>
+                <div class="omni-container">
+                    <span class="material-symbols-outlined placeholder-icon" style="font-size: 3rem;">api</span>
+                    <h3 class="placeholder-text">Configuración IA & Tokens</h3>
+                    <p class="placeholder-subtext">Base de Conocimiento (RAG Builder) y Conexiones de N8N Webhooks para WhatsApp Oficial.</p>
+                </div>
             </section>
 
         </div>

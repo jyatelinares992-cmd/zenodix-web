@@ -1160,6 +1160,43 @@ document.addEventListener('DOMContentLoaded', () => {
             ideaChatBody.appendChild(typing);
             ideaChatBody.scrollTop = ideaChatBody.scrollHeight;
 
+            // 80/20 Fast Mock Response Hook
+            if (!localStorage.getItem('zenodix_ai_interacted')) {
+                localStorage.setItem('zenodix_ai_interacted', 'true');
+                const mockText = `¡Excelente ${capturedLeadData.name ? '<b>'+capturedLeadData.name+'</b>' : ''}! Veo que estás operando al límite. El 80% de ese tiempo se puede automatizar con flujos en n8n conectados a tu CRM y WhatsApp. He preparado una auditoría técnica rápida. ¿Me compartes la URL de tu sitio web para analizar por dónde empezar?`;
+                
+                setTimeout(() => {
+                    if (typing.parentElement) ideaChatBody.removeChild(typing);
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'srs-msg srs-ai is-animating';
+                    aiMsg.innerHTML = mockText;
+                    ideaChatBody.appendChild(aiMsg);
+                    
+                    if(typeof gsap !== 'undefined') {
+                        gsap.to(aiMsg, {duration: 0.3, opacity: 1, y: 0, ease: "power2.out"});
+                    }
+                    ideaChatBody.scrollTop = ideaChatBody.scrollHeight;
+                }, 800);
+                
+                // Silent fetch context background
+                try {
+                    fetch(N8N_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            sessionId: typeof currentSessionId !== 'undefined' ? currentSessionId : localStorage.getItem('zenodix_ai_session'),
+                            message: text,
+                            action: "idea_consult",
+                            clientName: capturedLeadData.name,
+                            clientWhatsApp: capturedLeadData.phone,
+                            isMockIntercepted: true
+                        })
+                    }).catch(e => {});
+                } catch(e) {}
+                
+                return;
+            }
+
             try {
                 let base64Image = "";
                 let base64Audio = "";
