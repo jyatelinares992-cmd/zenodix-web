@@ -27,28 +27,18 @@
     
     
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
-    <!-- Font Preloads to unblock render (FCP / LCP Optimization) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
-    
-    <!-- Deferred stylesheet loading -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" media="print" onload="this.media='all'">
-    
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="preload" as="style" href="styles.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" as="image" href="zenodix-logo-center.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="zenodix-logo-center.jpg">
 </head>
 <body>
 
     <!-- Header / Navbar -->
     <header class="navbar">
         <div class="logo-container">
-            <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" class="brand-logo" style="border-radius: 6px;" width="120" height="32" fetchpriority="high" fetchpriority="high">
+            <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" class="brand-logo" style="border-radius: 6px;" width="120" height="32">
             <span class="brand-name">Zenodix</span>
         </div>
         <nav class="nav-links">
@@ -69,92 +59,147 @@
         <canvas id="hero-canvas"></canvas>
         
         <div class="hero-content glass-effect" style="z-index: 10; max-width: 900px; padding-inline: 1rem;">
-            <span class="badge">Agencia de Software B2B</span>
-            <h1 style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; margin-bottom: 1.5rem;">Desarrollo de Software B2B de Élite y Automatización IA para Operaciones de Alto Valor.</h1>
-            <p class="subtitle" style="font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6;">Construimos plataformas SaaS a medida, integramos CRM Omnicanal y desplegamos Agentes de IA que escalan sin incrementar tu nómina. Tú dominas la estrategia, nosotros construimos la infraestructura.</p>
+            <span class="badge">Agencia de Software Factory</span>
+            <h1 style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.15; margin-bottom: 1.5rem;">Desarrollo de Software a la Medida y Ecosistemas IA.</h1>
+            <p class="subtitle" style="font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6;">Construimos Web Apps y Aplicaciones Móviles nativas integradas con Inteligencia Artificial para automatizar y escalar tus operaciones de Logística, CRM y Marketing.</p>
             <div class="hero-actions">
-                <button class="btn btn-primary glow-btn" onclick="window.open('https://cal.com/jhon-harlly-yate-linares-h4vio3/30min', '_blank')">Hablar con un Arquitecto de Software</button>
-                <button class="btn btn-outline" onclick="window.open('https://wa.me/573214741783?text=Hola%20Zenodix,%20quiero%20solicitar%20una%20auditor%C3%ADa%20de%20mi%20ecosistema%20actual', '_blank')">Auditar mi Ecosistema Actual</button>
+                <button class="btn btn-primary glow-btn" onclick="window.open('https://cal.com/jhon-harlly-yate-linares-h4vio3/30min', '_blank')">Agendar Cita</button>
+                <button class="btn btn-outline" onclick="window.location.href='#servicios'">Ver Servicios</button>
             </div>
         </div>
     </section>
 
-    </section>
-
-    <!-- NEW SECTION: B2B Architecture (3 Packages) -->
-    <section id="arquitectura" style="max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem;">
+    <!-- Node Ecosystem Section (Advanced Services) -->
+    <section id="servicios" class="services">
         <div class="section-header center mb-12">
-            <h2>Arquitecturas de Solución B2B</h2>
-            <p>Empaquetamos la tecnología de Silicon Valley en sistemas listos para operar y escalar tu negocio.</p>
+            <h2>Ecosistemas Conectados</h2>
+            <p>Desarrollo Web de Alto Rendimiento impulsado por Automatización Avanzada.</p>
             <div class="divider mt-4 mx-auto"></div>
         </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-            
-            <!-- Package 1: Desarrollo Web y Landing Pages -->
-            <a href="https://wa.me/573214741783?text=Hola%20Zenodix,%20estoy%20interesado%20en%20el%20paquete:%20Desarrollo%20Web%20y%20Landing%20Pages" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="b2b-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: all 0.3s ease; height: 100%;">
-                    <div style="background: rgba(0, 85, 255, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                        <span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 32px;">web</span>
-                    </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1e293b;">Desarrollo Web & Landing Pages</h3>
-                    <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">Páginas optimizadas para máxima conversión B2B. Más que sitios web, construimos máquinas de captura de leads con copy persuasivo y diseño intuitivo.</p>
-                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: #475569; font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 18px;">check</span> Copy orientado a ventas</li>
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 18px;">check</span> Velocidad de carga extrema</li>
-                        <li style="display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: var(--color-primary); font-size: 18px;">check</span> SEO Técnico Integrado</li>
-                    </ul>
-                </div>
-            </a>
-
-            <!-- Package 2: Aplicaciones Móviles -->
-            <a href="https://wa.me/573214741783?text=Hola%20Zenodix,%20estoy%20interesado%20en%20el%20paquete:%20Aplicaciones%20Móviles" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="b2b-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: all 0.3s ease; height: 100%;">
-                    <div style="background: rgba(139, 92, 246, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                        <span class="material-symbols-outlined" style="color: #8B5CF6; font-size: 32px;">smartphone</span>
-                    </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1e293b;">Aplicaciones Móviles Nativas</h3>
-                    <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">Lleva tu modelo de negocio al bolsillo de tus clientes. Apps iOS y Android con experiencias fluidas y notificaciones push estratégicas.</p>
-                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: #475569; font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #8B5CF6; font-size: 18px;">check</span> iOS y Android simultáneo</li>
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #8B5CF6; font-size: 18px;">check</span> Interfaz adictiva (UX/UI)</li>
-                        <li style="display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #8B5CF6; font-size: 18px;">check</span> Backend escalable</li>
-                    </ul>
-                </div>
-            </a>
-
-            <!-- Package 3: El Constructor E-commerce -->
-            <a href="https://wa.me/573214741783?text=Hola%20Zenodix,%20estoy%20interesado%20en%20el%20paquete:%20Constructor%20E-commerce" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="b2b-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: all 0.3s ease; height: 100%;">
-                    <div style="background: rgba(0, 255, 204, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                        <span class="material-symbols-outlined" style="color: #059669; font-size: 32px;">storefront</span>
-                    </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #1e293b;">Constructor E-commerce</h3>
-                    <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">Integración end-to-end con Shopify y pasarelas de pago. Olvídate del trabajo manual y recupera carritos abandonados automáticamente.</p>
-                    <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: #475569; font-size: 0.95rem;">
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #059669; font-size: 18px;">check</span> Inventario Sincronizado</li>
-                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #059669; font-size: 18px;">check</span> Upsell/Cross-sell Automático</li>
-                        <li style="display: flex; align-items: center; gap: 8px;"><span class="material-symbols-outlined" style="color: #059669; font-size: 18px;">check</span> Logs de Logística Integral</li>
-                    </ul>
-                </div>
-            </a>
-
-
-            
-        </div>
         
-        <style>
-            .b2b-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 25px -5px rgba(0, 85, 255, 0.2), 0 8px 10px -6px rgba(0, 85, 255, 0.15) !important;
-                border-color: rgba(0, 85, 255, 0.5) !important;
-            }
-            .b2b-card.highlight:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 25px -5px rgba(0, 85, 255, 0.3), 0 8px 10px -6px rgba(0, 85, 255, 0.2) !important;
-                border-color: var(--color-accent) !important;
-            }
-        </style>
+        <div class="node-network-wrapper">
+            <!-- Node Canvas for JS Connections -->
+            <canvas id="nodeConnections" class="node-canvas"></canvas>
+            
+            <div class="node-container">
+                <!-- Center Hub -->
+                <div class="node-item center-hub" data-node="zenodix">
+                    <div class="node-icon" style="background: white; padding: 2px; border-radius: 50%; overflow: hidden;">
+                        <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" width="56" height="56" style="border-radius: 50%; object-fit: contain; transform: scale(1.15);" loading="lazy">
+                    </div>
+                    <span class="node-label">Ecosistema Zenodix</span>
+                </div>
+                
+                <!-- Far Left Orbit -->
+                <div class="node-item satellite" data-node="stripe" style="top: 50%; left: 5%;">
+                    <div class="node-icon">
+                        <img src="https://res.cloudinary.com/dzzdjpjjp/image/upload/v1773704351/Gemini_Generated_Image_acjwh9acjwh9acjw_ahepip.jpg" alt="Stripe" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">Pagos</span>
+                </div>
+                <div class="node-item satellite" data-node="hostinger" style="top: 15%; left: 12%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/hostinger/673DE6" alt="Hostinger" width="36" height="36" loading="lazy">
+                    </div>
+                    <span class="node-label">Hostinger</span>
+                </div>
+                <div class="node-item satellite" data-node="wmstms" style="top: 85%; left: 12%;">
+                    <div class="node-icon">
+                        <span class="material-symbols-outlined" style="font-size: 32px; color: #F59E0B;">inventory_2</span>
+                    </div>
+                    <span class="node-label">WMS / TMS</span>
+                </div>
+
+                <!-- Mid Left Orbit -->
+                <div class="node-item satellite" data-node="n8n" style="top: 30%; left: 25%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/n8n/ea4b71" alt="n8n" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">n8n (Lógica Automática)</span>
+                </div>
+                <div class="node-item satellite" data-node="analytics" style="top: 70%; left: 25%;">
+                    <div class="node-icon">
+                        <span class="material-symbols-outlined" style="font-size: 32px; color: #10B981;">query_stats</span>
+                    </div>
+                    <span class="node-label">Data Analytics</span>
+                </div>
+                <div class="node-item satellite" data-node="webdev" style="top: 10%; left: 38%;">
+                    <div class="node-icon">
+                        <span class="material-symbols-outlined" style="font-size: 32px; color: #2563EB;">code_blocks</span>
+                    </div>
+                    <span class="node-label">Programación Web</span>
+                </div>
+                <div class="node-item satellite" data-node="calendar" style="top: 90%; left: 38%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Calendar" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">Smart Calendar</span>
+                </div>
+
+                <!-- Center Column -->
+                <div class="node-item satellite" data-node="shopify" style="top: 0%; left: 50%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/shopify/95BF47" alt="Shopify" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">Shopify</span>
+                </div>
+                <div class="node-item satellite" data-node="openai" style="top: 100%; left: 50%;">
+                    <div class="node-icon">
+                        <img src="https://res.cloudinary.com/dzzdjpjjp/image/upload/v1773704012/open-ai-logo-png_seeklogo-428036_fy7shs.png" alt="OpenAI" width="36" height="36" loading="lazy">
+                    </div>
+                    <span class="node-label">OpenAI (IA)</span>
+                </div>
+
+                <!-- Mid Right Orbit -->
+                <div class="node-item satellite" data-node="woocommerce" style="top: 10%; left: 62%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/woocommerce/96588A" alt="WooCommerce" width="36" height="36" loading="lazy">
+                    </div>
+                    <span class="node-label">WooCommerce</span>
+                </div>
+                <div class="node-item satellite" data-node="supplychain" style="top: 90%; left: 62%;">
+                    <div class="node-icon">
+                        <span class="material-symbols-outlined" style="font-size: 34px; color: #0EA5E9;">account_tree</span>
+                    </div>
+                    <span class="node-label">Supply Chain</span>
+                </div>
+                <div class="node-item satellite" data-node="whatsapp" style="top: 30%; left: 75%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp Bot" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">WhatsApp Bot API</span>
+                </div>
+                <div class="node-item satellite" data-node="social" style="top: 70%; left: 75%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/meta/046A38" alt="Meta" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">Meta & Redes Sociales</span>
+                </div>
+
+                <!-- Far Right Orbit -->
+                <div class="node-item satellite" data-node="appdev" style="top: 15%; left: 88%;">
+                    <div class="node-icon" style="display: flex; gap: 4px; padding-top: 5px;">
+                        <img src="https://cdn.simpleicons.org/apple/000000" width="22" height="22" alt="Apple" loading="lazy">
+                        <img src="https://cdn.simpleicons.org/android/3DDC84" width="22" height="22" alt="Android" loading="lazy">
+                    </div>
+                    <span class="node-label">Desarrollo Apps</span>
+                </div>
+                <div class="node-item satellite" data-node="powerbi" style="top: 85%; left: 88%;">
+                    <div class="node-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" width="36" height="36" onerror="this.src='https://cdn.simpleicons.org/powerbi/F2C811'" loading="lazy">
+                    </div>
+                    <span class="node-label">Power BI</span>
+                </div>
+                <div class="node-item satellite" data-node="googleads" style="top: 50%; left: 95%;">
+                    <div class="node-icon">
+                        <img src="https://cdn.simpleicons.org/googleads/F4B400" alt="Google Ads" width="40" height="40" loading="lazy">
+                    </div>
+                    <span class="node-label">Google Ads</span>
+                </div>
+            </div>
+        </div>
+
+
     </section>
 
     <!-- NEW MARKETING PSYCHOLOGY SECTION: CONTRAST EFFECT & LOSS AVERSION -->
@@ -234,7 +279,7 @@
                 </button>
                 <button type="button" class="app-icon-btn" onclick="openAppPanel('panel-social', 'social_tier')">
                     <div class="app-icon shadow-neon"><span class="material-symbols-outlined">campaign</span></div>
-                    <span class="app-label">Redes IA</span>
+                    <span class="app-label">Redes Ads</span>
                 </button>
                 <button type="button" class="app-icon-btn" onclick="openAppPanel('panel-voice', 'voice_tier')">
                     <div class="app-icon shadow-neon"><span class="material-symbols-outlined">record_voice_over</span></div>
@@ -246,7 +291,7 @@
                 </button>
                 <button type="button" class="app-icon-btn" onclick="openAppPanel('panel-powerups', 'power_ups')">
                     <div class="app-icon shadow-neon"><span class="material-symbols-outlined">bolt</span></div>
-                    <span class="app-label">Power-Ups</span>
+                    <span class="app-label">Automatizaciones</span>
                 </button>
                 <button type="button" class="app-icon-btn" onclick="openAppPanel('panel-consultoria', '')">
                     <div class="app-icon shadow-neon"><span class="material-symbols-outlined">handshake</span></div>
@@ -500,7 +545,7 @@
                                 <div class="tier-card">
                                     <div class="tier-info">
                                         <strong>Agente WhatsApp Async</strong>
-                                        <span>Transcribe notas de voz y responde con audios clonados ( + ElevenLabs).</span>
+                                        <span>Transcribe notas de voz y responde con audios clonados (Tecnología IA Zenodix).</span>
                                     </div>
                                     <div class="tier-price">$1.500.000 COP</div>
                                 </div>
@@ -510,7 +555,7 @@
                                 <div class="tier-card">
                                     <div class="tier-info">
                                         <strong>Agente Telefónico Inbound</strong>
-                                        <span>Contesta llamadas entrantes en tiempo real, agendando citas (Twilio + Vapi).</span>
+                                        <span>Contesta llamadas entrantes en tiempo real, agendando citas en tu calendario.</span>
                                     </div>
                                     <div class="tier-price">$3.500.000 COP</div>
                                 </div>
@@ -592,10 +637,10 @@
                                 </div>
                             </label>
                             <label class="tier-label">
-                                <input type="checkbox" name="power_ups" class="service-checkbox" value="Automatización Operativa n8n" data-price="1988000">
+                                <input type="checkbox" name="power_ups" class="service-checkbox" value="Automatización Operativa IA" data-price="1988000">
                                 <div class="tier-card">
                                     <div class="tier-info">
-                                        <strong>Automatización Operativa n8n</strong>
+                                        <strong>Automatización Operativa IA</strong>
                                         <span>Conexión directa CRM y WhatsApp.</span>
                                     </div>
                                     <div class="tier-price">+$1.988.000 COP</div>
@@ -658,6 +703,9 @@
         </div>
     </section>
 
+    
+
+    
 <section id="idea-chat" style="max-width: 800px; margin: 0 auto 5rem auto; padding: 0 1.5rem; scroll-margin-top: 100px;">
         <div class="section-header center mb-8">
             <h2 style="font-size: 2rem; color: var(--color-primary); line-height: 1.2;">¿Tienes dudas de lo que estás buscando?</h2>
@@ -675,42 +723,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div id="ideaIcebreakers" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 15px; padding: 0 10px;">
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Tengo leads, pero mi equipo colapsa al seguirlos.')">"Tengo leads, pero mi equipo colapsa al seguirlos."</button>
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Necesito conectar mis campañas de Meta con mi base de datos.')">"Necesito conectar mis campañas de Meta con mi base de datos."</button>
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Queremos crear una App SaaS para nuestros clientes VIP.')">"Queremos crear una App SaaS para nuestros clientes VIP."</button>
-            </div>
-            
-            <style>
-                .icebreaker-btn {
-                    background: rgba(0, 255, 204, 0.1);
-                    border: 1px solid rgba(0, 255, 204, 0.3);
-                    color: white;
-                    padding: 8px 15px;
-                    border-radius: 20px;
-                    font-size: 0.85rem;
-                    cursor: pointer;
-                    text-align: left;
-                    transition: 0.2s;
-                }
-                .icebreaker-btn:hover {
-                    background: rgba(0, 255, 204, 0.2);
-                    transform: translateY(-1px);
-                }
-            </style>
-
-            <script>
-                function sendIdeaIcebreaker(text) {
-                    const input = document.getElementById('ideaChatInput');
-                    const sendBtn = document.getElementById('ideaSendBtn');
-                    if(input && sendBtn && !input.disabled) {
-                        input.value = text;
-                        sendBtn.click();
-                    }
-                }
-            </script>
-
             <div class="idea-chat-input-area srs-input-group">
                 <label class="chat-icon-btn multimodal-btn" title="Adjuntar Archivo">
                     <input type="file" id="ideaFileInput" accept="image/*,audio/*" hidden onchange="window.handleFileSelect(this, 'ideaFileAlert')">
@@ -722,145 +734,6 @@
             </div>
         </div>
     </section>
-
-    
-
-    
-<!-- Node Ecosystem Section (Advanced Services) -->
-    <section id="servicios" class="services">
-        <div class="section-header center mb-12">
-            <h2>Ecosistemas Conectados</h2>
-            <p>Desarrollo Web de Alto Rendimiento impulsado por Automatización Avanzada.</p>
-            <div class="divider mt-4 mx-auto"></div>
-        </div>
-        
-        <div class="node-network-wrapper">
-            <!-- Node Canvas for JS Connections -->
-            <canvas id="nodeConnections" class="node-canvas"></canvas>
-            
-            <div class="node-container">
-                <!-- Center Hub -->
-                <div class="node-item center-hub" data-node="zenodix">
-                    <div class="node-icon" style="background: white; padding: 2px; border-radius: 50%; overflow: hidden;">
-                        <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" width="56" height="56" style="border-radius: 50%; object-fit: contain; transform: scale(1.15);" loading="lazy">
-                    </div>
-                    <span class="node-label">Ecosistema Zenodix</span>
-                </div>
-                
-                <!-- Far Left Orbit -->
-                <div class="node-item satellite" data-node="stripe" style="top: 50%; left: 5%;">
-                    <div class="node-icon">
-                        <img src="https://res.cloudinary.com/dzzdjpjjp/image/upload/v1773704351/Gemini_Generated_Image_acjwh9acjwh9acjw_ahepip.jpg" alt="Stripe" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">Pagos</span>
-                </div>
-                <div class="node-item satellite" data-node="hostinger" style="top: 15%; left: 12%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/hostinger/673DE6" alt="Hostinger" width="36" height="36" loading="lazy">
-                    </div>
-                    <span class="node-label">Hostinger</span>
-                </div>
-                <div class="node-item satellite" data-node="wmstms" style="top: 85%; left: 12%;">
-                    <div class="node-icon">
-                        <span class="material-symbols-outlined" style="font-size: 32px; color: #F59E0B;">inventory_2</span>
-                    </div>
-                    <span class="node-label">WMS / TMS</span>
-                </div>
-
-                <!-- Mid Left Orbit -->
-                <div class="node-item satellite" data-node="n8n" style="top: 30%; left: 25%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/n8n/ea4b71" alt="n8n" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">n8n (Lógica Automática)</span>
-                </div>
-                <div class="node-item satellite" data-node="analytics" style="top: 70%; left: 25%;">
-                    <div class="node-icon">
-                        <span class="material-symbols-outlined" style="font-size: 32px; color: #10B981;">query_stats</span>
-                    </div>
-                    <span class="node-label">Data Analytics</span>
-                </div>
-                <div class="node-item satellite" data-node="webdev" style="top: 10%; left: 38%;">
-                    <div class="node-icon">
-                        <span class="material-symbols-outlined" style="font-size: 32px; color: #2563EB;">code_blocks</span>
-                    </div>
-                    <span class="node-label">Programación Web</span>
-                </div>
-                <div class="node-item satellite" data-node="calendar" style="top: 90%; left: 38%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Calendar" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">Smart Calendar</span>
-                </div>
-
-                <!-- Center Column -->
-                <div class="node-item satellite" data-node="shopify" style="top: 0%; left: 50%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/shopify/95BF47" alt="Shopify" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">Shopify</span>
-                </div>
-                <div class="node-item satellite" data-node="openai" style="top: 100%; left: 50%;">
-                    <div class="node-icon">
-                        <img src="https://res.cloudinary.com/dzzdjpjjp/image/upload/v1773704012/open-ai-logo-png_seeklogo-428036_fy7shs.png" alt="OpenAI" width="36" height="36" loading="lazy">
-                    </div>
-                    <span class="node-label">OpenAI (IA)</span>
-                </div>
-
-                <!-- Mid Right Orbit -->
-                <div class="node-item satellite" data-node="woocommerce" style="top: 10%; left: 62%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/woocommerce/96588A" alt="WooCommerce" width="36" height="36" loading="lazy">
-                    </div>
-                    <span class="node-label">WooCommerce</span>
-                </div>
-                <div class="node-item satellite" data-node="supplychain" style="top: 90%; left: 62%;">
-                    <div class="node-icon">
-                        <span class="material-symbols-outlined" style="font-size: 34px; color: #0EA5E9;">account_tree</span>
-                    </div>
-                    <span class="node-label">Supply Chain</span>
-                </div>
-                <div class="node-item satellite" data-node="whatsapp" style="top: 30%; left: 75%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp Bot" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">WhatsApp Bot API</span>
-                </div>
-                <div class="node-item satellite" data-node="social" style="top: 70%; left: 75%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/meta/046A38" alt="Meta" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">Meta & Redes Sociales</span>
-                </div>
-
-                <!-- Far Right Orbit -->
-                <div class="node-item satellite" data-node="appdev" style="top: 15%; left: 88%;">
-                    <div class="node-icon" style="display: flex; gap: 4px; padding-top: 5px;">
-                        <img src="https://cdn.simpleicons.org/apple/000000" width="22" height="22" alt="Apple" loading="lazy">
-                        <img src="https://cdn.simpleicons.org/android/3DDC84" width="22" height="22" alt="Android" loading="lazy">
-                    </div>
-                    <span class="node-label">Desarrollo Apps</span>
-                </div>
-                <div class="node-item satellite" data-node="powerbi" style="top: 85%; left: 88%;">
-                    <div class="node-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" width="36" height="36" onerror="this.src='https://cdn.simpleicons.org/powerbi/F2C811'" loading="lazy">
-                    </div>
-                    <span class="node-label">Power BI</span>
-                </div>
-                <div class="node-item satellite" data-node="googleads" style="top: 50%; left: 95%;">
-                    <div class="node-icon">
-                        <img src="https://cdn.simpleicons.org/googleads/F4B400" alt="Google Ads" width="40" height="40" loading="lazy">
-                    </div>
-                    <span class="node-label">Google Ads</span>
-                </div>
-            </div>
-        </div>
-
-
-    </section>
-
-    
-
 
     <!-- Features Micro UI Section -->
     <section id="features-micro" class="features-micro">
@@ -1058,217 +931,43 @@
     </section>
 
     <!-- FAQ Section -->
-    
-    
-    <section id="faq" class="faq-section" style="max-width: 900px; margin: 4rem auto; padding: 0 1.5rem;">
-        
-        <style>
-            .faq-accordion details {
-                background: white;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                padding: 1rem 1.5rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                margin-bottom: 0.5rem;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-                border-left: 4px solid transparent;
-            }
-            .faq-accordion details:hover {
-                border-color: var(--color-primary);
-                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-                border-left-color: var(--color-primary);
-            }
-            .faq-accordion summary {
-                font-size: 1.05rem;
-                font-weight: 600;
-                color: #1e293b;
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                outline: none;
-            }
-            .faq-accordion summary::-webkit-details-marker {
-                display: none;
-            }
-            .faq-accordion details[open] summary {
-                color: var(--color-primary);
-                margin-bottom: 0.5rem;
-            }
-            .faq-accordion summary .icon-toggle {
-                font-size: 1.5rem;
-                font-weight: 300;
-                transition: transform 0.3s ease;
-                color: var(--color-primary);
-            }
-            .faq-accordion details[open] summary .icon-toggle {
-                transform: rotate(45deg);
-                color: #ef4444;
-            }
-            .faq-accordion p {
-                margin-top: 0.5rem;
-                color: #64748b;
-                line-height: 1.6;
-                font-size: 0.95rem;
-                padding-top: 0.5rem;
-                border-top: 1px solid #f1f5f9;
-            }
-        </style>
-    
-        <div class="section-header center mb-8">
-            <h2 style="color: #0f172a; font-size: 2rem; font-weight: 700; text-align: center;">Preguntas Frecuentes sobre el Servicio</h2>
-            <div class="divider mt-4 mx-auto" style="background: var(--color-primary);"></div>
-            <p style="text-align: center; color: #64748b; margin-top: 1rem;">Aquí encontrarás respuestas claras a las dudas más comunes. Nuestro objetivo es ayudarte a entender cómo trabajamos en <strong>Zenodix</strong>.</p>
+    <section id="faq" class="faq-section">
+        <div class="section-header center">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Todo lo que necesitas saber antes de empezar.</p>
+            <div class="divider"></div>
         </div>
-        
-        <div class="faq-accordion">
-            <details>
-                <summary>
-                    ¿Están legalmente constituidos como empresa?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Sí. Estamos legalmente constituidos para brindarte seguridad y respaldo corporativo total.</p>
+        <div class="faq-container">
+            <details class="faq-item animate-on-scroll">
+                <summary>¿Cuánto tiempo toma implementar un ecosistema? <span class="material-symbols-outlined faq-icon">add</span></summary>
+                <div class="faq-content">
+                    Depende de la complejidad, pero los proyectos iniciales suelen tomar entre 1 a 2 semanas asegurando cero downtime en tu operación actual.
+                </div>
             </details>
-        
-            <details>
-                <summary>
-                    ¿Tienen facturación electrónica?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Totalmente. Entregamos facturación electrónica en cada transacción, lo que te permite contabilizar tu inversión digital formalmente en los gastos de tu empresa.</p>
+            <details class="faq-item animate-on-scroll">
+                <summary>¿Qué herramientas integran en las automatizaciones? <span class="material-symbols-outlined faq-icon">add</span></summary>
+                <div class="faq-content">
+                    Usamos conectores limpios n8n, Zapier y APIs personalizadas Node.js para unificar tu CRM, ERP, eCommerce, correos y bases de datos transaccionales.
+                </div>
             </details>
-        
-            <details>
-                <summary>
-                    ¿Qué incluye la gestión de ecosistemas B2B?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Incluye arquitecturas de software customizadas como tiendas en línea auto-administrables, portales de clientes y automatizaciones en N8N para conectar tu CRM con pasarelas de pago, sin procesos manuales.</p>
-            </details>
-        
-            <details>
-                <summary>
-                    ¿Cuánto tiempo toma desarrollar una plataforma completa?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Los desarrollos suelen oscilar entre 2 a 5 semanas dependiendo de la complejidad de la arquitectura técnica, las integraciones vía API necesarias y el volumen de pantallas a diseñar.</p>
-            </details>
-        
-            <details>
-                <summary>
-                    ¿Tengo que visitarlos presencialmente para contratar?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>No, somos una agencia nativa digital. Operamos a través de salas virtuales en Google Meet o Zoom, brindándote un acompañamiento 100% online ininterrumpido sin importar tu ubicación geográfica.</p>
-            </details>
-        
-            <details>
-                <summary>
-                    Quiero escalar mi negocio, pero no sé que tecnología usar. ¿Me pueden ayudar?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Hacemos una auditoría tecnológica gratuita donde evaluamos tu operación actual, y te prescribimos la arquitectura exacta: N8N para automatizar, Supabase si necesitas base de datos escalable, o Shopify si vendes productos. Contáctanos por WhatsApp para empezar.</p>
-            </details>
-        
-            <details>
-                <summary>
-                    Una vez entregada la tecnología, ¿yo mismo puedo hacer cambios?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Absolutamente. Nuestras entregas incluyen un handover completo, capacitando a tu equipo para manejar actualizaciones de contenido (textos, imágenes, productos) desde administradores nativos, sin tocar una sola línea de código.</p>
-            </details>
-        
-            <details>
-                <summary>
-                    ¿Qué garantías me brindan en el desarrollo de software?
-                    <span class="icon-toggle">+</span>
-                </summary>
-                <p>Firmamos SLAs (Service Level Agreements) para todos los desarrollos a medida. Mantenemos garantías de soporte por bugs de código durante el primer año post-producción sin costos ocultos.</p>
+            <details class="faq-item animate-on-scroll">
+                <summary>¿Tengo control sobre mi plataforma? <span class="material-symbols-outlined faq-icon">add</span></summary>
+                <div class="faq-content">
+                    100%. Construimos en código nativo o arquitecturas Headless para que seas dueño total de tu tecnología, sin suscripciones cautivas a modelos cerrados como Shopify monolítico o WordPress pesado.
+                </div>
             </details>
         </div>
     </section>
-    
-<!-- Footer -->
-    
-    <!-- Footer Redesign -->
-    <footer id="contacto" class="footer" style="background-color: #0d1117; color: #c9d1d9; padding: 4rem 2rem; font-family: 'Inter', sans-serif;">
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
-            <!-- Column 1: Newsletter -->
-            <div>
-                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Suscríbete al Newsletter</h3>
-                <p style="color: #8b949e; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
-                    Sé el primero en enterarte de las últimas noticias sobre tendencias en ecosistemas digitales, automatización e IA.
-                </p>
-                <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <input type="email" placeholder="Tu correo electrónico" required style="padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #30363d; background: #161b22; color: #ffffff; font-size: 0.95rem; width: 100%; outline: none;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#30363d'">
-                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s;">
-                        Suscríbete
-                    </button>
-                </form>
-            </div>
-            
-            <!-- Column 2: Contact -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contacto:</h3>
-                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
-                    <span class="material-symbols-outlined" style="font-size: 20px;">location_on</span>
-                    <span>Bogotá, Colombia</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
-                    <span class="material-symbols-outlined" style="font-size: 20px;">mail</span>
-                    <span>info@zenodix.com</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
-                    <span class="material-symbols-outlined" style="font-size: 20px;">phone_iphone</span>
-                    <span>3015703066</span>
-                </div>
-            </div>
-            
-            <!-- Column 3: Social Links -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Síguenos:</h3>
-                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/instagram/8b949e" alt="Instagram" width="20" height="20" style="filter: grayscale(100%);">
-                    Instagram
-                </a>
-                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/tiktok/8b949e" alt="TikTok" width="20" height="20" style="filter: grayscale(100%);">
-                    Tiktok
-                </a>
-                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/facebook/8b949e" alt="Facebook" width="20" height="20" style="filter: grayscale(100%);">
-                    Facebook
-                </a>
-                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/linkedin/8b949e" alt="LinkedIn" width="20" height="20" style="filter: grayscale(100%);">
-                    Linkedin
-                </a>
-            </div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="footer-logo">
+            <img src="Gemini_Generated_Image_8mtgmj8mtgmj8mtg.jpg" alt="Zenodix Logo" loading="lazy" width="400" height="300">
+            <span>Zenodix</span>
         </div>
-        
-        <div style="max-width: 1200px; margin: 4rem auto 0; padding-top: 2rem; border-top: 1px solid #30363d; display: flex; flex-direction: column; align-items: center; color: #8b949e; font-size: 0.85rem; gap: 1rem;">
-            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.5rem; filter: grayscale(100%); opacity: 0.7;">
-                <span style="font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: #ffffff;">Zenodix</span>
-            </div>
-            <div>© 2026 ZENODIX AGENCY. TODOS LOS DERECHOS RESERVADOS.</div>
-            <div style="display: flex; gap: 1.5rem;">
-                <a href="https://wa.me/573214741783" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" width="24" height="24">
-                </a>
-                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="24" height="24">
-                </a>
-                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" width="24" height="24">
-                </a>
-                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok" width="24" height="24">
-                </a>
-            </div>
-        </div>
+        <p>Elevando el estándar del comercio digital B2B.</p>
+        <div class="copyright">© 2026 Zenodix Agency. Todos los derechos reservados.</div>
     </footer>
-    
 
     <!-- n8n Chatbot Floating UI -->
     <div class="chatbot-container">
