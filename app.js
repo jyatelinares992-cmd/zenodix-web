@@ -27,6 +27,71 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onerror = error => reject(error);
     });
 
+    // Global function to capture AI-generated registration forms
+    window.submitAIChatRegistration = async function(btn) {
+        try {
+            const container = btn.parentElement;
+            const messagesContainer = btn.closest('.chat-messages, .mini-chat-messages, .idea-chat-body, .srs-chat-body');
+            const inputs = container.querySelectorAll('input');
+            if (inputs.length < 2) return;
+            
+            const name = inputs[0].value.trim();
+            const phone = inputs[1].value.trim();
+            
+            if (!name || !phone) {
+                alert("Por favor completa tu Nombre y WhatsApp para continuar.");
+                return;
+            }
+            
+            inputs.forEach(i => { i.disabled = true; i.style.opacity = '0.7'; });
+            btn.disabled = true;
+            btn.innerText = "Registrando...";
+            btn.style.opacity = '0.7';
+            
+            const messageText = `Mis datos de registro son: Nombre: ${name}, WhatsApp: ${phone}`;
+            
+            const printMsg = (text, cls) => {
+                const msgEl = document.createElement('div');
+                msgEl.classList.add('chat-message', cls);
+                msgEl.innerHTML = text;
+                if(messagesContainer) {
+                    messagesContainer.appendChild(msgEl);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+                return msgEl;
+            };
+            
+            printMsg(messageText, 'user-message');
+            const loadingMsg = printMsg('...', 'ai-message');
+            
+            const N_URL = 'https://zenodixapp.app.n8n.cloud/webhook/zenodix-b2b-sales';
+            const sessionId = localStorage.getItem('zenodix_ai_session') || ('session_' + Math.random().toString(36).substr(2, 9));
+            localStorage.setItem('zenodix_ai_session', sessionId); 
+            
+            const response = await fetch(N_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sessionId: sessionId,
+                    message: messageText
+                })
+            });
+
+            if (!response.ok) throw new Error('Network error');
+
+            const data = await response.json();
+            if(loadingMsg) loadingMsg.remove();
+
+            const aiResponse = data.response || data.message || "Éxito. Recibido en nuestro sistema.";
+            printMsg(aiResponse, 'ai-message');
+            
+            container.style.display = 'none';
+
+        } catch (e) {
+            console.error("Error submitting AI registration:", e);
+        }
+    };
+
     // Audio Recorder Factory (REPARADO: Auto-Stop y Promesas)
     window.initAudioRecorder = function(btnId) {
         const btn = document.getElementById(btnId);
