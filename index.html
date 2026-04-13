@@ -27,18 +27,28 @@
     
     
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Font Preloads to unblock render (FCP / LCP Optimization) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    
+    <!-- Deferred stylesheet loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" media="print" onload="this.media='all'">
+    
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    </noscript>
     <link rel="preload" as="style" href="styles.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" as="image" href="zenodix-logo-center.jpg">
+    <link rel="preload" as="image" href="zenodix-logo-center.jpg" fetchpriority="high">
 </head>
 <body>
 
     <!-- Header / Navbar -->
     <header class="navbar">
         <div class="logo-container">
-            <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" class="brand-logo" style="border-radius: 6px;" width="120" height="32">
+            <img src="zenodix-logo-center.jpg" alt="Zenodix Logo" class="brand-logo" style="border-radius: 6px;" width="120" height="32" fetchpriority="high" fetchpriority="high">
             <span class="brand-name">Zenodix</span>
         </div>
         <nav class="nav-links">
@@ -648,6 +658,71 @@
         </div>
     </section>
 
+<section id="idea-chat" style="max-width: 800px; margin: 0 auto 5rem auto; padding: 0 1.5rem; scroll-margin-top: 100px;">
+        <div class="section-header center mb-8">
+            <h2 style="font-size: 2rem; color: var(--color-primary); line-height: 1.2;">¿Tienes dudas de lo que estás buscando?</h2>
+            <p style="font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.6; margin-top: 0.5rem;">Dime tu idea y juntos podemos aclararla para agendar una reunión y avanzar en tu proyecto.</p>
+        </div>
+        
+        <div class="idea-chat-container">
+            <div class="idea-chat-body" id="ideaChatBody">
+                <div class="srs-msg srs-ai" id="initialAiGreeting">
+                    ¡Hola! Soy tu Consultor Estratégico AI de Zenodix. Antes de comenzar a analizar tu idea, por favor regístrate para poder guardar tu avance y enviarte la propuesta final:
+                    <div id="leadCaptureForm" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.5); padding: 15px; border-radius: 12px;">
+                        <input type="text" id="leadName" placeholder="Tu Nombre Completo" style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.95rem;">
+                        <input type="tel" id="leadPhone" placeholder="Tu WhatsApp (ej: +57 300...)" style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.95rem;">
+                        <button id="saveLeadBtn" style="padding: 10px; border-radius: 8px; border: none; background: var(--color-accent); color: white; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem;">Comenzar Consultoría</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ideaIcebreakers" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 15px; padding: 0 10px;">
+                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Tengo leads, pero mi equipo colapsa al seguirlos.')">"Tengo leads, pero mi equipo colapsa al seguirlos."</button>
+                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Necesito conectar mis campañas de Meta con mi base de datos.')">"Necesito conectar mis campañas de Meta con mi base de datos."</button>
+                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Queremos crear una App SaaS para nuestros clientes VIP.')">"Queremos crear una App SaaS para nuestros clientes VIP."</button>
+            </div>
+            
+            <style>
+                .icebreaker-btn {
+                    background: rgba(0, 255, 204, 0.1);
+                    border: 1px solid rgba(0, 255, 204, 0.3);
+                    color: white;
+                    padding: 8px 15px;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    cursor: pointer;
+                    text-align: left;
+                    transition: 0.2s;
+                }
+                .icebreaker-btn:hover {
+                    background: rgba(0, 255, 204, 0.2);
+                    transform: translateY(-1px);
+                }
+            </style>
+
+            <script>
+                function sendIdeaIcebreaker(text) {
+                    const input = document.getElementById('ideaChatInput');
+                    const sendBtn = document.getElementById('ideaSendBtn');
+                    if(input && sendBtn && !input.disabled) {
+                        input.value = text;
+                        sendBtn.click();
+                    }
+                }
+            </script>
+
+            <div class="idea-chat-input-area srs-input-group">
+                <label class="chat-icon-btn multimodal-btn" title="Adjuntar Archivo">
+                    <input type="file" id="ideaFileInput" accept="image/*,audio/*" hidden onchange="window.handleFileSelect(this, 'ideaFileAlert')">
+                    <span class="material-symbols-outlined" id="ideaFileAlert">attach_file</span>
+                </label>
+                <button class="chat-icon-btn multimodal-btn" id="ideaMicBtn" title="Voz (Próximamente)"><span class="material-symbols-outlined">mic</span></button>
+                <input type="text" id="ideaChatInput" placeholder="Escribe tu idea aquí..." autocomplete="off">
+                <button id="ideaSendBtn" class="send-btn"><span class="material-symbols-outlined">send</span></button>
+            </div>
+        </div>
+    </section>
+
     
 
     
@@ -785,70 +860,7 @@
     </section>
 
     
-<section id="idea-chat" style="max-width: 800px; margin: 0 auto 5rem auto; padding: 0 1.5rem; scroll-margin-top: 100px;">
-        <div class="section-header center mb-8">
-            <h2 style="font-size: 2rem; color: var(--color-primary); line-height: 1.2;">¿Tienes dudas de lo que estás buscando?</h2>
-            <p style="font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.6; margin-top: 0.5rem;">Dime tu idea y juntos podemos aclararla para agendar una reunión y avanzar en tu proyecto.</p>
-        </div>
-        
-        <div class="idea-chat-container">
-            <div class="idea-chat-body" id="ideaChatBody">
-                <div class="srs-msg srs-ai" id="initialAiGreeting">
-                    ¡Hola! Soy tu Consultor Estratégico AI de Zenodix. Antes de comenzar a analizar tu idea, por favor regístrate para poder guardar tu avance y enviarte la propuesta final:
-                    <div id="leadCaptureForm" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.5); padding: 15px; border-radius: 12px;">
-                        <input type="text" id="leadName" placeholder="Tu Nombre Completo" style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.95rem;">
-                        <input type="tel" id="leadPhone" placeholder="Tu WhatsApp (ej: +57 300...)" style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.95rem;">
-                        <button id="saveLeadBtn" style="padding: 10px; border-radius: 8px; border: none; background: var(--color-accent); color: white; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem;">Comenzar Consultoría</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="ideaIcebreakers" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 15px; padding: 0 10px;">
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Tengo leads, pero mi equipo colapsa al seguirlos.')">"Tengo leads, pero mi equipo colapsa al seguirlos."</button>
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Necesito conectar mis campañas de Meta con mi base de datos.')">"Necesito conectar mis campañas de Meta con mi base de datos."</button>
-                <button class="icebreaker-btn" onclick="sendIdeaIcebreaker('Queremos crear una App SaaS para nuestros clientes VIP.')">"Queremos crear una App SaaS para nuestros clientes VIP."</button>
-            </div>
-            
-            <style>
-                .icebreaker-btn {
-                    background: rgba(0, 255, 204, 0.1);
-                    border: 1px solid rgba(0, 255, 204, 0.3);
-                    color: white;
-                    padding: 8px 15px;
-                    border-radius: 20px;
-                    font-size: 0.85rem;
-                    cursor: pointer;
-                    text-align: left;
-                    transition: 0.2s;
-                }
-                .icebreaker-btn:hover {
-                    background: rgba(0, 255, 204, 0.2);
-                    transform: translateY(-1px);
-                }
-            </style>
 
-            <script>
-                function sendIdeaIcebreaker(text) {
-                    const input = document.getElementById('ideaChatInput');
-                    const sendBtn = document.getElementById('ideaSendBtn');
-                    if(input && sendBtn && !input.disabled) {
-                        input.value = text;
-                        sendBtn.click();
-                    }
-                }
-            </script>
-
-            <div class="idea-chat-input-area srs-input-group">
-                <label class="chat-icon-btn multimodal-btn" title="Adjuntar Archivo">
-                    <input type="file" id="ideaFileInput" accept="image/*,audio/*" hidden onchange="window.handleFileSelect(this, 'ideaFileAlert')">
-                    <span class="material-symbols-outlined" id="ideaFileAlert">attach_file</span>
-                </label>
-                <button class="chat-icon-btn multimodal-btn" id="ideaMicBtn" title="Voz (Próximamente)"><span class="material-symbols-outlined">mic</span></button>
-                <input type="text" id="ideaChatInput" placeholder="Escribe tu idea aquí..." autocomplete="off">
-                <button id="ideaSendBtn" class="send-btn"><span class="material-symbols-outlined">send</span></button>
-            </div>
-        </div>
-    </section>
 
     <!-- Features Micro UI Section -->
     <section id="features-micro" class="features-micro">
@@ -1047,81 +1059,216 @@
 
     <!-- FAQ Section -->
     
-    <section id="faq" class="faq-section" style="max-width: 800px; margin: 4rem auto; padding: 0 1.5rem;">
+    
+    <section id="faq" class="faq-section" style="max-width: 900px; margin: 4rem auto; padding: 0 1.5rem;">
+        
+        <style>
+            .faq-accordion details {
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 1rem 1.5rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-bottom: 0.5rem;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                border-left: 4px solid transparent;
+            }
+            .faq-accordion details:hover {
+                border-color: var(--color-primary);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                border-left-color: var(--color-primary);
+            }
+            .faq-accordion summary {
+                font-size: 1.05rem;
+                font-weight: 600;
+                color: #1e293b;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                outline: none;
+            }
+            .faq-accordion summary::-webkit-details-marker {
+                display: none;
+            }
+            .faq-accordion details[open] summary {
+                color: var(--color-primary);
+                margin-bottom: 0.5rem;
+            }
+            .faq-accordion summary .icon-toggle {
+                font-size: 1.5rem;
+                font-weight: 300;
+                transition: transform 0.3s ease;
+                color: var(--color-primary);
+            }
+            .faq-accordion details[open] summary .icon-toggle {
+                transform: rotate(45deg);
+                color: #ef4444;
+            }
+            .faq-accordion p {
+                margin-top: 0.5rem;
+                color: #64748b;
+                line-height: 1.6;
+                font-size: 0.95rem;
+                padding-top: 0.5rem;
+                border-top: 1px solid #f1f5f9;
+            }
+        </style>
+    
         <div class="section-header center mb-8">
-            <h2>Preguntas Frecuentes</h2>
-            <div class="divider mt-4 mx-auto"></div>
+            <h2 style="color: #0f172a; font-size: 2rem; font-weight: 700; text-align: center;">Preguntas Frecuentes sobre el Servicio</h2>
+            <div class="divider mt-4 mx-auto" style="background: var(--color-primary);"></div>
+            <p style="text-align: center; color: #64748b; margin-top: 1rem;">Aquí encontrarás respuestas claras a las dudas más comunes. Nuestro objetivo es ayudarte a entender cómo trabajamos en <strong>Zenodix</strong>.</p>
         </div>
         
-        <div class="faq-accordion" style="display: flex; flex-direction: column; gap: 1rem;">
-            <!-- FAQ 1 -->
-            <details style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; cursor: pointer;">
-                <summary style="font-size: 1.1rem; font-weight: bold; color: var(--color-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    ¿Cuánto tiempo toma desarrollar una Landing Page o sitio web?
-                    <span class="material-symbols-outlined">expand_more</span>
+        <div class="faq-accordion">
+            <details>
+                <summary>
+                    ¿Están legalmente constituidos como empresa?
+                    <span class="icon-toggle">+</span>
                 </summary>
-                <p style="margin-top: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
-                    Dependiendo de la complejidad, una Landing Page de alta conversión puede estar lista entre 7 a 15 días hábiles. Sitios corporativos más completos y orientados al SEO suelen tomar entre 3 a 5 semanas. El enfoque principal siempre será la velocidad de carga y el copywriting persuasivo.
-                </p>
+                <p>Sí. Estamos legalmente constituidos para brindarte seguridad y respaldo corporativo total.</p>
             </details>
-            
-            <!-- FAQ 2 -->
-            <details style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; cursor: pointer;">
-                <summary style="font-size: 1.1rem; font-weight: bold; color: var(--color-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    ¿Qué incluye el servicio de desarrollo de Aplicaciones Móviles?
-                    <span class="material-symbols-outlined">expand_more</span>
+        
+            <details>
+                <summary>
+                    ¿Tienen facturación electrónica?
+                    <span class="icon-toggle">+</span>
                 </summary>
-                <p style="margin-top: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
-                    Incluye la conceptualización de UX/UI, desarrollo simultáneo para iOS y Android, integración de APIs de terceros y la publicación en la App Store y Google Play Store. Construimos sobre código limpio y bases de datos escalables.
-                </p>
+                <p>Totalmente. Entregamos facturación electrónica en cada transacción, lo que te permite contabilizar tu inversión digital formalmente en los gastos de tu empresa.</p>
             </details>
-            
-            <!-- FAQ 3 -->
-            <details style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; cursor: pointer;">
-                <summary style="font-size: 1.1rem; font-weight: bold; color: var(--color-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    ¿Ofrecen mantenimiento y soporte continuo?
-                    <span class="material-symbols-outlined">expand_more</span>
+        
+            <details>
+                <summary>
+                    ¿Qué incluye la gestión de ecosistemas B2B?
+                    <span class="icon-toggle">+</span>
                 </summary>
-                <p style="margin-top: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
-                    Exacto. Ofrecemos pólizas de soporte donde nos encargamos del mantenimiento de servidores, actualizaciones de seguridad y optimización constante una vez la plataforma esté en producción, garantizando un "uptime" para tu negocio.
-                </p>
+                <p>Incluye arquitecturas de software customizadas como tiendas en línea auto-administrables, portales de clientes y automatizaciones en N8N para conectar tu CRM con pasarelas de pago, sin procesos manuales.</p>
             </details>
-
-            <!-- FAQ 4 -->
-            <details style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; cursor: pointer;">
-                <summary style="font-size: 1.1rem; font-weight: bold; color: var(--color-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    ¿Cómo optimizan el E-commerce para ventas?
-                    <span class="material-symbols-outlined">expand_more</span>
+        
+            <details>
+                <summary>
+                    ¿Cuánto tiempo toma desarrollar una plataforma completa?
+                    <span class="icon-toggle">+</span>
                 </summary>
-                <p style="margin-top: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
-                    No solo diseñamos la tienda; la configuramos con herramientas de retargeting, correos automatizados para recuperar carritos abandonados, y configuramos upsells automáticos conectando plataformas tecnológicas con pasarelas de pago globales de forma nativa.
-                </p>
+                <p>Los desarrollos suelen oscilar entre 2 a 5 semanas dependiendo de la complejidad de la arquitectura técnica, las integraciones vía API necesarias y el volumen de pantallas a diseñar.</p>
+            </details>
+        
+            <details>
+                <summary>
+                    ¿Tengo que visitarlos presencialmente para contratar?
+                    <span class="icon-toggle">+</span>
+                </summary>
+                <p>No, somos una agencia nativa digital. Operamos a través de salas virtuales en Google Meet o Zoom, brindándote un acompañamiento 100% online ininterrumpido sin importar tu ubicación geográfica.</p>
+            </details>
+        
+            <details>
+                <summary>
+                    Quiero escalar mi negocio, pero no sé que tecnología usar. ¿Me pueden ayudar?
+                    <span class="icon-toggle">+</span>
+                </summary>
+                <p>Hacemos una auditoría tecnológica gratuita donde evaluamos tu operación actual, y te prescribimos la arquitectura exacta: N8N para automatizar, Supabase si necesitas base de datos escalable, o Shopify si vendes productos. Contáctanos por WhatsApp para empezar.</p>
+            </details>
+        
+            <details>
+                <summary>
+                    Una vez entregada la tecnología, ¿yo mismo puedo hacer cambios?
+                    <span class="icon-toggle">+</span>
+                </summary>
+                <p>Absolutamente. Nuestras entregas incluyen un handover completo, capacitando a tu equipo para manejar actualizaciones de contenido (textos, imágenes, productos) desde administradores nativos, sin tocar una sola línea de código.</p>
+            </details>
+        
+            <details>
+                <summary>
+                    ¿Qué garantías me brindan en el desarrollo de software?
+                    <span class="icon-toggle">+</span>
+                </summary>
+                <p>Firmamos SLAs (Service Level Agreements) para todos los desarrollos a medida. Mantenemos garantías de soporte por bugs de código durante el primer año post-producción sin costos ocultos.</p>
             </details>
         </div>
     </section>
+    
 <!-- Footer -->
-    <footer id="contacto" class="footer">
-        <div class="footer-logo">
-            <img src="Gemini_Generated_Image_8mtgmj8mtgmj8mtg.jpg" alt="Zenodix Logo" loading="lazy" width="400" height="300">
-            <span>Zenodix</span>
+    
+    <!-- Footer Redesign -->
+    <footer id="contacto" class="footer" style="background-color: #0d1117; color: #c9d1d9; padding: 4rem 2rem; font-family: 'Inter', sans-serif;">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
+            <!-- Column 1: Newsletter -->
+            <div>
+                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Suscríbete al Newsletter</h3>
+                <p style="color: #8b949e; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                    Sé el primero en enterarte de las últimas noticias sobre tendencias en ecosistemas digitales, automatización e IA.
+                </p>
+                <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <input type="email" placeholder="Tu correo electrónico" required style="padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #30363d; background: #161b22; color: #ffffff; font-size: 0.95rem; width: 100%; outline: none;" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#30363d'">
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s;">
+                        Suscríbete
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Column 2: Contact -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Contacto:</h3>
+                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">location_on</span>
+                    <span>Bogotá, Colombia</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">mail</span>
+                    <span>info@zenodix.com</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; color: #8b949e; font-size: 0.95rem;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">phone_iphone</span>
+                    <span>3015703066</span>
+                </div>
+            </div>
+            
+            <!-- Column 3: Social Links -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Síguenos:</h3>
+                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/instagram/8b949e" alt="Instagram" width="20" height="20" style="filter: grayscale(100%);">
+                    Instagram
+                </a>
+                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/tiktok/8b949e" alt="TikTok" width="20" height="20" style="filter: grayscale(100%);">
+                    Tiktok
+                </a>
+                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/facebook/8b949e" alt="Facebook" width="20" height="20" style="filter: grayscale(100%);">
+                    Facebook
+                </a>
+                <a href="#" target="_blank" style="color: #8b949e; font-size: 0.95rem; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#8b949e'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/linkedin/8b949e" alt="LinkedIn" width="20" height="20" style="filter: grayscale(100%);">
+                    Linkedin
+                </a>
+            </div>
         </div>
-        <p>Elevando el estándar del comercio digital B2B.</p>
-        <div class="copyright">© 2026 Zenodix Agency. Todos los derechos reservados.</div>
-        <div class="social-links" style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center;">
-            <a href="https://wa.me/573214741783" target="_blank" style="color: var(--color-primary); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" width="28" height="28">
-            </a>
-            <a href="#" target="_blank" style="color: var(--color-primary); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="28" height="28">
-            </a>
-            <a href="#" target="_blank" style="color: var(--color-primary); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" width="28" height="28">
-            </a>
-            <a href="#" target="_blank" style="color: var(--color-primary); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-                <img src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok" width="28" height="28">
-            </a>
+        
+        <div style="max-width: 1200px; margin: 4rem auto 0; padding-top: 2rem; border-top: 1px solid #30363d; display: flex; flex-direction: column; align-items: center; color: #8b949e; font-size: 0.85rem; gap: 1rem;">
+            <div class="footer-logo" style="display: flex; align-items: center; gap: 0.5rem; filter: grayscale(100%); opacity: 0.7;">
+                <span style="font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: #ffffff;">Zenodix</span>
+            </div>
+            <div>© 2026 ZENODIX AGENCY. TODOS LOS DERECHOS RESERVADOS.</div>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="https://wa.me/573214741783" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" width="24" height="24">
+                </a>
+                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" width="24" height="24">
+                </a>
+                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" width="24" height="24">
+                </a>
+                <a href="#" target="_blank" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+                    <img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok" width="24" height="24">
+                </a>
+            </div>
         </div>
     </footer>
+    
 
     <!-- n8n Chatbot Floating UI -->
     <div class="chatbot-container">
