@@ -1303,17 +1303,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     aiMsg.innerHTML = formattedResponse;
                     ideaChatBody.appendChild(aiMsg);
                 } else {
-                if (true) {
-                    const data = await response.json();
-                    const aiMsg = document.createElement('div');
-                    aiMsg.className = 'srs-msg srs-ai';
-                    
-                    let formattedResponse = typeof data === 'string' ? data : (data.response || data.output || "Recibido. Estamos procesando tus requerimientos...");
-                    formattedResponse = formattedResponse.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    
-                    aiMsg.innerHTML = formattedResponse;
-                    ideaChatBody.appendChild(aiMsg);
-                } else {
                     const errUi = document.createElement('div');
                     errUi.className = 'srs-msg srs-ai';
                     errUi.style.color = '#ef4444';
