@@ -1108,7 +1108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         activateIdeaChatInputs(false);
         if (saveLeadBtn) {
-            saveLeadBtn.addEventListener('click', () => {
+            saveLeadBtn.addEventListener('click', async () => {
                 const nameVal = leadNameInput.value.trim();
                 const phoneVal = leadPhoneInput.value.trim();
                 
@@ -1122,9 +1122,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('zenodix_ai_lead_name', nameVal);
                 localStorage.setItem('zenodix_ai_lead_phone', phoneVal);
                 
-                initialAiGreeting.innerHTML = `¡Excelente <strong>${nameVal}</strong>! Ya tengo tu contacto guardado. Dime, ¿en qué te puedo ayudar hoy?`;
-                activateIdeaChatInputs(true);
-                if(ideaChatInput) ideaChatInput.focus();
+                // Bloquear inputs temporalmente
+                leadNameInput.disabled = true;
+                leadPhoneInput.disabled = true;
+                saveLeadBtn.disabled = true;
+                saveLeadBtn.innerText = "Registrando...";
+                initialAiGreeting.innerHTML = 'Conectando con Consultor AI...';
+                
+                try {
+                    const messageText = `Mis datos de registro son: Nombre: ${nameVal}, WhatsApp: ${phoneVal}`;
+                    const sessionId = typeof currentSessionId !== 'undefined' ? currentSessionId : localStorage.getItem('zenodix_ai_session') || ('session_' + Math.random().toString(36).substr(2, 9));
+                    localStorage.setItem('zenodix_ai_session', sessionId);
+                    
+                    const response = await fetch(N8N_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            sessionId: sessionId,
+                            message: messageText,
+                            action: "idea_consult",
+                            clientName: nameVal,
+                            clientWhatsApp: phoneVal
+                        })
+                    });
+
+                    if (!response.ok) throw new Error('Network error');
+
+                    const data = await response.json();
+                    
+                    const aiResponse = data.response || data.message || data.output || `¡Excelente <strong>${nameVal}</strong>! Tus datos han sido recibidos. Dime, ¿en qué te puedo ayudar hoy?`;
+                    
+                    initialAiGreeting.innerHTML = aiResponse;
+                    activateIdeaChatInputs(true);
+                    
+                    // Asegurar que ocultamos el form o algo si es necesario
+                    const leadCaptureDiv = document.querySelector('.idea-lead-capture');
+                    if(leadCaptureDiv) {
+                       leadCaptureDiv.style.display = 'none';
+                    }
+
+                    if(ideaChatInput) ideaChatInput.focus();
+
+                } catch (e) {
+                    console.error("Error al guardar datos en n8n:", e);
+                    initialAiGreeting.innerHTML = `Ocurrió un error (n8n no responde). Guardado local. ¿En qué te ayudo?`;
+                    activateIdeaChatInputs(true);
+                }
             });
         }
     }
@@ -1225,48 +1268,11 @@ document.addEventListener('DOMContentLoaded', () => {
             ideaChatBody.appendChild(typing);
             ideaChatBody.scrollTop = ideaChatBody.scrollHeight;
 
-            // 80/20 Fast Mock Response Hook
-            if (!localStorage.getItem('zenodix_ai_interacted')) {
-                localStorage.setItem('zenodix_ai_interacted', 'true');
-                const mockText = `¡Excelente ${capturedLeadData.name ? '<b>'+capturedLeadData.name+'</b>' : ''}! Veo que estás operando al límite. El 80% de ese tiempo se puede automatizar con flujos en n8n conectados a tu CRM y WhatsApp. He preparado una auditoría técnica rápida. ¿Me compartes la URL de tu sitio web para analizar por dónde empezar?`;
-                
-                setTimeout(() => {
-                    if (typing.parentElement) ideaChatBody.removeChild(typing);
-                    const aiMsg = document.createElement('div');
-                    aiMsg.className = 'srs-msg srs-ai is-animating';
-                    aiMsg.innerHTML = mockText;
-                    ideaChatBody.appendChild(aiMsg);
-                    
-                    if(typeof gsap !== 'undefined') {
-                        gsap.to(aiMsg, {duration: 0.3, opacity: 1, y: 0, ease: "power2.out"});
-                    }
-                    ideaChatBody.scrollTop = ideaChatBody.scrollHeight;
-                }, 800);
-                
-                // Silent fetch context background
-                try {
-                    fetch(N8N_WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            sessionId: typeof currentSessionId !== 'undefined' ? currentSessionId : localStorage.getItem('zenodix_ai_session'),
-                            message: text,
-                            action: "idea_consult",
-                            clientName: capturedLeadData.name,
-                            clientWhatsApp: capturedLeadData.phone,
-                            isMockIntercepted: true
-                        })
-                    }).catch(e => {});
-                } catch(e) {}
-                
-                return;
-            }
-
+            
             try {
                 let base64Image = "";
                 let base64Audio = "";
                 
-                // REPARADO: Soporte para ambos a la vez
                 if (file && window.getBase64) base64Image = await window.getBase64(file);
                 if (audioToSend && window.getBase64) base64Audio = await window.getBase64(audioToSend);
                 
@@ -1284,9 +1290,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                 });
 
-                ideaChatBody.removeChild(typing);
+                if (typing.parentElement) ideaChatBody.removeChild(typing);
 
                 if (response.ok) {
+                    const data = await response.json();
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'srs-msg srs-ai';
+                    
+                    let formattedResponse = typeof data === 'string' ? data : (data.response || data.output || "Recibido. Estamos procesando...");
+                    formattedResponse = formattedResponse.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    
+                    aiMsg.innerHTML = formattedResponse;
+                    ideaChatBody.appendChild(aiMsg);
+                } else {
+                if (true) {
                     const data = await response.json();
                     const aiMsg = document.createElement('div');
                     aiMsg.className = 'srs-msg srs-ai';
